@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import '../reausable components/reusable components.dart';
-
+import 'package:dotted_border/dotted_border.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 

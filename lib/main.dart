@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/layouts/Discount.dart';
+import 'package:untitled/layouts/checkout.dart';
 import 'package:untitled/layouts/customer%20support.dart';
 import 'package:untitled/layouts/myAccount.dart';
 import 'package:untitled/layouts/settings.dart';
@@ -16,7 +17,7 @@ void main() {
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Discount(),
+          home: Checkout(),
 
       ));
 }
