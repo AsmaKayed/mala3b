@@ -32,7 +32,7 @@ class Checkout extends StatelessWidget {
             children: [Padding(
               padding: const EdgeInsets.only(top: 35,left: 16,right: 16),
               child: Container(
-                width: 382,height: 542,
+                width: 382,height: 600,
                 decoration: BoxDecoration(color: mainWhite,borderRadius: BorderRadius.circular(25)),
               ),),
 
@@ -87,8 +87,8 @@ class Checkout extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 23,top:30,right:40 ),
-                      width: 133,height: 64,
+                      margin: EdgeInsets.only(bottom: 23,top:30,),
+                      width: 115,height: 64,
                       decoration: BoxDecoration(color: mainGrey,borderRadius:BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8)),),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 25,right: 27),
@@ -124,10 +124,10 @@ class Checkout extends StatelessWidget {
                         alignment:Alignment.centerLeft
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 12,left: 11),
+                      padding: const EdgeInsets.only(left: 11),
                       child: DottedLine(
                         dashColor:Colors.purple,
-                        lineLength: 320,
+                        lineLength: 312,
                         dashLength: 15,
                         dashGapLength: 15,
                       ),
@@ -161,7 +161,62 @@ class Checkout extends StatelessWidget {
                   ),
                 ],),
               ),
-              Container(),
+              Padding(
+                padding: const EdgeInsets.only(top:445 ),
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 45,top: 20),
+                    child: Text('Red Bull 600 ml',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:133,top: 20),
+                    child: Text('QAR 5',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                ],),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 45,left: 45,top: 500),
+                child: Container(
+                  height: 0.5,width: 380,
+                  color: Colors.black,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:490 ),
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 45,top: 20),
+                    child: Text('5X5 Football pitch',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:100,top: 20),
+                    child: Text('QAR 120',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                ],),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:510 ),
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 45,top: 20),
+                    child: Text('Red Bull 600 ml',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:133,top: 20),
+                    child: Text('QAR 5',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                ],),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 45,left: 45,top: 560),
+                child: Container(
+                  height:0.5,width: 380,
+                  color: mainGrey,
+                ),
+              ),
+
+
+
             ]
           ),
 

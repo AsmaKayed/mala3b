@@ -8,6 +8,7 @@ import 'package:untitled/cubit/states.dart';
 import 'package:untitled/modules/mainModule/booking.dart';
 import 'package:untitled/modules/mainModule/homePage.dart';
 import 'package:untitled/modules/mainModule/profile.dart';
+import 'package:untitled/network/local/cacheHelper.dart';
 
 
 class AppCubit extends Cubit<AppStates>
@@ -27,20 +28,11 @@ class AppCubit extends Cubit<AppStates>
     currentIndex=index;
     emit(AppChangedBottomNavBar());
   }
-  // var picker= ImagePicker();
-  // File? ProfileImage;
-  //
-  // Future<void> getProfileImage() async{
-  //   final pickedFile= await picker.pickImage(source:ImageSource.gallery);
-  //
-  //   if (pickedFile!=null){
-  // ProfileImage=File(pickedFile.path);
-  // print(pickedFile.path);
-  // emit(ProfilePhotoSuccessState());
-  // }else{
-  //
-  //     emit(ProfilePhotoErrorState());    }
-  //   }
-
-
+  bool isClick =false;
+void changeStyle() {
+  isClick = !isClick;
+  CacheHelper.putData(key: 'isClick', value: isClick).then((value) {
+    emit(StyleChangeState());
+  });
+}
 }

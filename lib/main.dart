@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/layouts/Discount.dart';
+import 'package:untitled/layouts/bookingSummary.dart';
 import 'package:untitled/layouts/checkout.dart';
 import 'package:untitled/layouts/customer%20support.dart';
 import 'package:untitled/layouts/myAccount.dart';
@@ -10,14 +12,18 @@ import 'package:untitled/modules/login/otp.dart';
 import 'package:untitled/modules/login/register.dart';
 import 'package:untitled/modules/mainModule/booking.dart';
 import 'package:untitled/modules/venue/venueFirst.dart';
+import 'package:untitled/network/local/cacheHelper.dart';
 
 import 'layouts/splash.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  CacheHelper.init();
+  await CacheHelper.init();
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Checkout(),
+          home: BookingSummary(),
 
       ));
 }

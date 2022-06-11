@@ -10,6 +10,6 @@ abstract class AppStates{}
 
 class ProfilePhotoErrorState extends AppStates{}
 
-class SelectDateSuccessState extends AppStates{}
+class StyleChangeState extends AppStates{}
 
-class SelectDateErrorState extends AppStates{}
+class SelectedState extends AppStates{}

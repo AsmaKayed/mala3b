@@ -1,38 +1,31 @@
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import '../../appModels/appModels.dart';
+import '../../cubit/cubit.dart';
+import '../../cubit/states.dart';
 import '../../reausable components/reusable components.dart';
 
-class FirstVenuePage extends StatefulWidget {
-
-  @override
-  State<FirstVenuePage> createState() => _FirstVenuePageState();
-}
-
-class _FirstVenuePageState extends State<FirstVenuePage> {
-  List<PitchModel>? pitch=[
-    PitchModel(size: '5x5 pitch', name: 'football', image: Image.asset('assets/secondfootball.png' ,),),
-    PitchModel(size: '6x6 pitch', name: 'volleyball', image:Image.asset('assets/secondbasketball.png'),),
-  ];
-
-  late DateTime _selectedDate;
-
-  @override
-  void initState() {
-    super.initState();
-    _resetSelectedDate();
-  }
-
-  void _resetSelectedDate() {
-    _selectedDate = DateTime.now().add(Duration(days: 5));
-  }
+class FirstVenuePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List _selectedIndexs=[];
+    bool viewObject=true;
+    List<PitchModel>? pitch=[
+      PitchModel(size: '5x5 pitch', name: 'football', image: Image.asset('assets/secondfootball.png' ,),),
+      PitchModel(size: '6x6 pitch', name: 'volleyball', image:Image.asset('assets/secondbasketball.png'),),
+    ];
 
-    return Scaffold(
+     return BlocProvider(
+        create: (BuildContext context)=>AppCubit(),
+
+    child: BlocConsumer<AppCubit,AppStates>(
+    listener: (BuildContext context,AppStates){},
+    builder: (BuildContext context,AppStates)
+    =>Scaffold(
       backgroundColor: Color(0xfffafafa),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -60,8 +53,8 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
               decoration: BoxDecoration(color:mainWhite,borderRadius: BorderRadius.circular(35)),
              child: Column(children: [
                Row(children: [
-                 Padding(
-                   padding: const EdgeInsets.only(left: 24,top: 46),
+                 const Padding(
+                   padding: EdgeInsets.only(left: 24,top: 46),
                    child: Text('WESTBAY , Doha, Qatar',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',fontWeight: FontWeight.w100),),
                  ),
 
@@ -71,8 +64,8 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                  ),
 
                ],),
-               Padding(
-                 padding: const EdgeInsets.only(left: 24,top: 39,right:292 ),
+               const Padding(
+                 padding: EdgeInsets.only(left: 24,top: 39,right:292 ),
                  child: Text('Select pitch',style: TextStyle(fontSize: 16,fontFamily: 'Poppins',),),
                ),
 
@@ -88,13 +81,110 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                             child: StaggeredGridView.countBuilder(
                                 scrollDirection: Axis.vertical,
                                 staggeredTileBuilder: (int index)=>StaggeredTile.count(1,0.4),
-                           crossAxisCount: 2,
+                              crossAxisCount: 2,
 
                                 mainAxisSpacing: 8,
                                 itemCount: pitch!.length,
                                 crossAxisSpacing: 0,
-                                itemBuilder: (BuildContext context, int index) =>buildCard(pitch![index] )
-                  ),
+                                itemBuilder: (BuildContext context, int index,) {
+                                  final _isSelected = _selectedIndexs.contains(
+                                      index);
+                                  PitchModel pitch;
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 20, top: 15),
+                                    child:
+                                    InkWell(
+                                      onTap: () {
+                                        AppCubit.get(context).changeStyle();
+                                      },
+                                      child: Container(
+                                        width: 200, height: 50,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 2, color:AppCubit.get(context).isClick ?Colors.red:Colors.blue,),
+                                          borderRadius: BorderRadius.circular(
+                                              4),),
+                                        child: Card(
+                                          elevation: 0,
+                                          child: Container(
+                                              child: Column(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .only(left: 8,
+                                                        right: 148,
+                                                        top: 8,
+                                                        bottom: 8),
+                                                    child: Text(
+                                                      'ggggggg',
+                                                      style: TextStyle(
+                                                          fontSize: 15),),
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Container(
+                                                        child: Column(
+                                                          children: [
+                                                            Row(
+
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                      .only(
+                                                                      left: 8,
+                                                                      right: 2),
+                                                                  child: Container(
+                                                                      width: 67,
+                                                                      height: 26,
+                                                                      color: mainGrey,
+                                                                      child: Center(
+                                                                          child: Text(
+                                                                            'Football',
+                                                                            style: TextStyle(
+                                                                                fontSize: 15),))),
+                                                                ),
+                                                                Container(
+                                                                    margin: const EdgeInsets
+                                                                        .only(
+                                                                        right: 2),
+                                                                    width: 67,
+                                                                    height: 26,
+                                                                    color: mainGrey,
+                                                                    child: Center(
+                                                                        child: Text(
+                                                                          'Volleyball',
+                                                                          style: TextStyle(
+                                                                              fontSize: 15),))),
+
+                                                                Container(
+
+                                                                    width: 67,
+                                                                    height: 26,
+                                                                    color: mainGrey,
+                                                                    child: Center(
+                                                                        child: Text(
+                                                                          'Hockey',
+                                                                          style: TextStyle(
+                                                                              fontSize: 15),))),
+
+                                                              ],
+
+                                                            ),
+
+
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],),
+                                                ],
+                                              )
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
 
                            ),
                      ),
@@ -121,7 +211,8 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
 
                          crossAxisSpacing: 12,
 
-                           ), itemBuilder: (BuildContext context, int index) =>buildSmallCard(index),)),
+                           ), itemBuilder: (BuildContext context, int index)
+                       =>buildSmallCard(index,),)),
                    ))),
 
 
@@ -138,65 +229,10 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
 
     ))
 
-    );
+    )));
   }
 
-  Widget buildCard(PitchModel pitch )=>Padding(
-    padding: const EdgeInsets.only(left: 20,top: 15),
-    child: Container(
-      width: 200,height: 50,
-      decoration: BoxDecoration(border: Border.all(width:2,color: mainGreen),borderRadius: BorderRadius.circular(4)),
-      child: Card(
-        elevation: 0,
-        child: Container(
-            child:Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 8,right: 148,top: 8,bottom: 8),
-                  child: Text('${pitch.size}',style: TextStyle(fontSize: 15),),
-                ),
-                Row(
-                  children: [
-                    Container(
-                      child: Column(
-                        children: [
-                          Row(
 
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 8,right: 2),
-                                child: Container(
-                                  width: 67,height: 26,
-                                  color: mainGrey,
-                                    child: Center(child: Text('Football',style: TextStyle(fontSize: 15),))),
-                              ),
-                             Container(
-                               margin: const EdgeInsets.only(right: 2),
-                                    width: 67,height: 26,
-                                  color: mainGrey,
-                                    child: Center(child: Text('Volleyball',style: TextStyle(fontSize: 15),))),
-
-                              Container(
-
-                                    width: 67,height: 26,
-                                  color: mainGrey,
-                                    child: Center(child: Text('Hockey',style: TextStyle(fontSize: 15),))),
-
-                            ],
-
-                          ),
-
-
-                        ],
-                      ),
-                    )
-                  ],),
-              ],
-            )
-        ),
-      ),
-    ),
-  );
 
   Widget buildSmallCard(int index)=>Container(
     padding: const EdgeInsets.only(left: 0,top: 0),
