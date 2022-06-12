@@ -13,3 +13,7 @@ class ProfilePhotoErrorState extends AppStates{}
 class StyleChangeState extends AppStates{}
 
 class SelectedState extends AppStates{}
+
+class MinusState extends AppStates{}
+
+class PlusState extends AppStates{}

@@ -18,6 +18,17 @@ class AppCubit extends Cubit<AppStates>
   static AppCubit get( context) => BlocProvider.of(context);
 
   int currentIndex=0;
+  int counter=1;
+  void minus(){
+
+    counter--;
+
+    emit(MinusState());
+  }
+  void plus(){
+    counter++;
+    emit(PlusState());
+  }
   List<Widget> screens=[
      Home(),
     Booking(),

@@ -1,13 +1,34 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../cubit/cubit.dart';
+import '../cubit/states.dart';
 import '../reausable components/reusable components.dart';
 
-class BookingSummary extends StatelessWidget {
-
+class BookingSummary extends StatefulWidget {
 
   @override
+  State<BookingSummary> createState() => _BookingSummaryState();
+}
+
+class _BookingSummaryState extends State<BookingSummary>with SingleTickerProviderStateMixin {
+  TabController? tabController;
+  void  initState(){
+
+    tabController=TabController(length: 4, vsync: this);
+    tabController!.addListener(_handleTabSelection);
+    super.initState();
+  }
+
+  void _handleTabSelection() {
+    setState(() {
+    });
+  }
+  @override
+
+
   Widget build(BuildContext context) {
     return  Scaffold(
 
@@ -397,7 +418,7 @@ class BookingSummary extends StatelessWidget {
                   child: Text('Total',style: TextStyle(fontSize: 14,fontFamily: 'Poppins',color: Colors.black)),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left:246,top: 20,right: 34),
+                  padding: const EdgeInsets.only(left:250,top: 20,right: 34),
                   child: Text('QAR 120',style: TextStyle(fontSize: 14,fontFamily: 'Poppins',color: Colors.black)),
                 ),
               ],),
@@ -407,10 +428,10 @@ class BookingSummary extends StatelessWidget {
         Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: mainGreen,),
           width: 346,height:41 ,
-          margin: const EdgeInsets.only( top: 24,right: 34,left: 34 ),
+          margin: const EdgeInsets.only( top: 24,right: 34,left: 34 ,bottom:15),
           child: Row(
             children:[MaterialButton(
-              onPressed: (){},
+              onPressed: (){_bottomSheet(context);},
               child: Padding(
                 padding: const EdgeInsets.only(left: 232),
                 child: Row(
@@ -434,4 +455,158 @@ class BookingSummary extends StatelessWidget {
  ] ),
     )  );
   }
+
+  _bottomSheet(context){
+    showModalBottomSheet(context: context,
+      shape: const RoundedRectangleBorder( // <-- SEE HERE
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(16.0),
+        ),
+      ),
+      builder: (BuildContext c)
+    {
+      return BlocProvider(
+          create: (BuildContext context)=>AppCubit(),
+
+          child: BlocConsumer<AppCubit,AppStates>(
+          listener: (BuildContext context,AppStates){},
+      builder: (BuildContext context,AppStates)
+      => Container(
+        height: 554, width: 414,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topLeft:Radius.circular(16),topRight:Radius.circular(16)), color: mainWhite,),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children:[
+            Padding(
+              padding: const EdgeInsets.only(left: 350,top: 30),
+              child: Text('Skip',style: TextStyle(fontFamily: 'Popppins',fontSize: 16,color: Colors.black),),
+            ),
+           Container(
+                    alignment: Alignment.topLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top:20 ),
+                      child: TabBar(
+                      controller: tabController,
+                          labelColor: Colors.black,
+                      indicatorWeight: 4,
+                           indicatorSize: TabBarIndicatorSize.label,
+
+                      indicatorColor: Color(0XFF79B62D),
+                       unselectedLabelColor:Color(0XFF707070),
+                   isScrollable: true,
+                              labelStyle:TextStyle(fontFamily: 'Poppins',fontSize: 15,) ,
+                      tabs:[
+                      Tab(text:"Energy Drinks", ),
+                      Tab(text: 'CoolBar',),
+                        Tab(text:"Coffee", ),
+                        Tab(text: 'Snacks',),
+                      ]
+                      ),
+                    ),
+                    ),
+                    SizedBox(height: 18,),
+                  Container(
+                  height: 400,width: 382,
+                  child: TabBarView(
+                  controller: tabController,
+                    children: [
+                          Column(children: [
+                            Container(
+                              width:366,height: 72,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(color:Color(0xffF1F2F2),width: 5)
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:11,right: 28,top: 8,bottom: 8),
+                                    child: Image.asset('assets/redbull.png'),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 15,),
+                                        child: Text('Red Bull',style: TextStyle(fontSize: 14,fontFamily: 'Poppins',color: Colors.black),),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(bottom: 0, ),
+                                        child: Text('600 ml Can',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070)),),
+                                      ),
+
+                                    ],
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      AppCubit.get(context).changeStyle();
+                                    },
+                                      child: AppCubit.get(context).isClick? Padding(
+                                        padding: const EdgeInsets.only(left: 110),
+                                        child: Container(
+                                            width: 75,height: 25,
+                                            color: Colors.white,
+                                            child:  Container(
+                                            child: Row(
+                                              children: [
+                                                InkWell(
+                                                  onTap: (){AppCubit.get(context).minus();},
+                                                  child: Container(
+                                                    height: 25,width: 25,
+                                                    child:Image.asset('assets/minus.png',height: 16,width: 16,)
+                                                  ),
+                                                ),
+                                                Container(
+                                                  child: Center(child: Text('${AppCubit.get(context).counter}')),
+                                                  height: 24,width: 24,
+                                                  decoration: BoxDecoration(color:Colors.white,border: Border.all(width: 1,color: Colors.black)),
+
+                                                ),
+                                                InkWell(
+                                                  onTap: (){AppCubit.get(context).plus();},
+                                                  child: Container(
+                                                    decoration: BoxDecoration(border: Border.all(color: Colors.black,)),
+                                                      height: 24,width: 24,
+                                                      child:Icon(Icons.add,size: 18)
+                                                  ),
+                                                ),
+
+                                              ],
+                                            ),
+                                          ),),
+                                      )
+                                       :  Padding(
+                                         padding: const EdgeInsets.only(left: 110),
+                                         child: Container(
+                                           decoration: BoxDecoration(
+                                             borderRadius: BorderRadius.circular(4),
+                                             color: Color(0XFF313133),
+                                           ),
+                                      width: 72,height: 32,
+                                          child: Center(child: Text('ADD',style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.bold),)),
+                                         ),
+                                       ),
+                                  )
+
+
+
+                                ],
+                              ),
+                            )
+
+                          ],),
+                      Container(color: mainGrey,),
+                      Container(color: mainGrey,),
+                      Container(color: mainGrey,),
+            ]
+          ),),
+
+            ]),
+        )
+      )));
+
+    },
+
+    );}
 }
