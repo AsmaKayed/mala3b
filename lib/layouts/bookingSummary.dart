@@ -471,12 +471,12 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
           child: BlocConsumer<AppCubit,AppStates>(
           listener: (BuildContext context,AppStates){},
       builder: (BuildContext context,AppStates)
-      => Container(
-        height: 554, width: 414,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft:Radius.circular(16),topRight:Radius.circular(16)), color: mainWhite,),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+      => SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          height: 554, width: 414,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(topLeft:Radius.circular(16),topRight:Radius.circular(16)), color: mainWhite,),
           child: Column(
             children:[
             Padding(
@@ -517,7 +517,7 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
                               width:366,height: 72,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
-                                border: Border.all(color:Color(0xffF1F2F2),width: 5)
+                                border: Border.all(color:Color(0xffF1F2F2),width: 1)
                               ),
                               child: Row(
                                 children: [
@@ -540,9 +540,9 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
                                   ),
                                   InkWell(
                                     onTap: (){
-                                      AppCubit.get(context).changeStyle();
+                                      AppCubit.get(context).firstchangeStyle();
                                     },
-                                      child: AppCubit.get(context).isClick? Padding(
+                                      child: AppCubit.get(context).firstisClick? Padding(
                                         padding: const EdgeInsets.only(left: 110),
                                         child: Container(
                                             width: 75,height: 25,
@@ -551,7 +551,7 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
                                             child: Row(
                                               children: [
                                                 InkWell(
-                                                  onTap: (){AppCubit.get(context).minus();},
+                                                  onTap: (){AppCubit.get(context).firstMinus();},
                                                   child: Container(
                                                     height: 25,width: 25,
                                                     child:Image.asset('assets/minus.png',height: 16,width: 16,)
@@ -564,7 +564,7 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
 
                                                 ),
                                                 InkWell(
-                                                  onTap: (){AppCubit.get(context).plus();},
+                                                  onTap: (){AppCubit.get(context).firstPlus();},
                                                   child: Container(
                                                     decoration: BoxDecoration(border: Border.all(color: Colors.black,)),
                                                       height: 24,width: 24,
@@ -593,7 +593,208 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
 
                                 ],
                               ),
-                            )
+                            ),
+                            Container(
+                              width:366,height: 72,
+                              margin: EdgeInsets.only(top: 12),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(color:Color(0xffF1F2F2),width: 1)
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:11,right: 28,top: 8,bottom: 8),
+                                    child: Image.asset('assets/getorade.png'),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 15,),
+                                        child: Text('Getorade',style: TextStyle(fontSize: 14,fontFamily: 'Poppins',color: Colors.black),),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(bottom: 0, ),
+                                        child: Text('600 ml Can',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070)),),
+                                      ),
+
+                                    ],
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      AppCubit.get(context).secondchangeStyle();
+                                    },
+                                    child: AppCubit.get(context).secondisClick? Padding(
+                                      padding: const EdgeInsets.only(left: 110),
+                                      child: Container(
+                                        width: 75,height: 25,
+                                        color: Colors.white,
+                                        child:  Container(
+                                          child: Row(
+                                            children: [
+                                              InkWell(
+                                                onTap: (){AppCubit.get(context).secondMinus();},
+                                                child: Container(
+                                                    height: 25,width: 25,
+                                                    child:Image.asset('assets/minus.png',height: 16,width: 16,)
+                                                ),
+                                              ),
+                                              Container(
+                                                child: Center(child: Text('${AppCubit.get(context).secondcounter}')),
+                                                height: 24,width: 24,
+                                                decoration: BoxDecoration(color:Colors.white,border: Border.all(width: 1,color: Colors.black)),
+
+                                              ),
+                                              InkWell(
+                                                onTap: (){AppCubit.get(context).secondPlus();},
+                                                child: Container(
+                                                    decoration: BoxDecoration(border: Border.all(color: Colors.black,)),
+                                                    height: 24,width: 24,
+                                                    child:Icon(Icons.add,size: 18)
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),),
+                                    )
+                                        :  Padding(
+                                      padding: const EdgeInsets.only(left: 110),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(4),
+                                          color: Color(0XFF313133),
+                                        ),
+                                        width: 72,height: 32,
+                                        child: Center(child: Text('ADD',style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.bold),)),
+                                      ),
+                                    ),
+                                  )
+
+
+
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width:366,height: 72,
+                              margin: EdgeInsets.only(top: 12),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(color:Color(0xffF1F2F2),width: 1)
+                              ),
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left:11,right: 28,top: 8,bottom: 8),
+                                    child: Image.asset('assets/monster.png'),
+                                  ),
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 15,),
+                                        child: Text('Monster',style: TextStyle(fontSize: 14,fontFamily: 'Poppins',color: Colors.black),),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(bottom: 0, ),
+                                        child: Text('600 ml Can',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070)),),
+                                      ),
+
+                                    ],
+                                  ),
+                                  InkWell(
+                                    onTap: (){
+                                      AppCubit.get(context).thirdchangeStyle();
+                                    },
+                                    child: AppCubit.get(context).thirdisClick? Padding(
+                                      padding: const EdgeInsets.only(left: 110),
+                                      child: Container(
+                                        width: 75,height: 25,
+                                        color: Colors.white,
+                                        child:  Container(
+                                          child: Row(
+                                            children: [
+                                              InkWell(
+                                                onTap: (){AppCubit.get(context).thirdchangeStyle();},
+                                                child: Container(
+                                                    height: 25,width: 25,
+                                                    child:Image.asset('assets/minus.png',height: 16,width: 16,)
+                                                ),
+                                              ),
+                                              Container(
+                                                child: Center(child: Text('${AppCubit.get(context).thirdcounter}')),
+                                                height: 24,width: 24,
+                                                decoration: BoxDecoration(color:Colors.white,border: Border.all(width: 1,color: Colors.black)),
+
+                                              ),
+                                              InkWell(
+                                                onTap: (){AppCubit.get(context).thirdPlus();},
+                                                child: Container(
+                                                    decoration: BoxDecoration(border: Border.all(color: Colors.black,)),
+                                                    height: 24,width: 24,
+                                                    child:Icon(Icons.add,size: 18)
+                                                ),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),),
+                                    )
+                                        :  Padding(
+                                      padding: const EdgeInsets.only(left: 110),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(4),
+                                          color: Color(0XFF313133),
+                                        ),
+                                        width: 72,height: 32,
+                                        child: Center(child: Text('ADD',style: TextStyle(color: Colors.white,fontSize: 12,fontWeight: FontWeight.bold),)),
+                                      ),
+                                    ),
+                                  ),
+
+
+
+                                ],
+                              ),
+                            ),
+                           InkWell(
+                             onTap: (){},
+                             child: Container(color: Colors.white,
+                             width: 382,height: 80,
+                               margin: EdgeInsets.only(left: 16,right: 16,top: 65),
+                                 child: Row(
+                                   children: [
+                                     Column(children: [
+                                       Padding(
+                                         padding: const EdgeInsets.only(left:24,right:35,top:24),
+                                         child: Text('Amount',style: TextStyle(
+                                           fontFamily: 'Poppins',fontSize: 12,color: Color(0xff313133),
+                                         ),),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.only(left:24,),
+                                         child: Text('5.00 QAR',style: TextStyle(
+                                           fontFamily: 'Poppins',fontSize: 19,color: mainGreen,
+                                         ),),
+                                       ),
+                                     ],),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 165,right: 5),
+                                          child: Text('Next',style: TextStyle(color:mainGreen,fontFamily: 'Poppins',fontSize: 16 ),),
+                                        ),
+                                     Image.asset("assets/arrow.png",color: mainGreen,),
+
+
+                                   ],
+
+                                 ),
+
+                             ),
+                           )
+
+
 
                           ],),
                       Container(color: mainGrey,),
@@ -602,8 +803,8 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
             ]
           ),),
 
-            ]),
-        )
+            ])
+        ),
       )));
 
     },

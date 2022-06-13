@@ -5,6 +5,8 @@ import 'package:untitled/layouts/bookingSummary.dart';
 import 'package:untitled/layouts/checkout.dart';
 import 'package:untitled/layouts/customer%20support.dart';
 import 'package:untitled/layouts/myAccount.dart';
+import 'package:untitled/layouts/notifications.dart';
+import 'package:untitled/layouts/paymentSuccessful.dart';
 import 'package:untitled/layouts/settings.dart';
 import 'package:untitled/layouts/try.dart';
 import 'package:untitled/modules/login/login.dart';
@@ -23,7 +25,7 @@ void main() async{
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: BookingSummary(),
+          home: Notifications(),
 
       ));
 }

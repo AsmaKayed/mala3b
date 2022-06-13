@@ -21,10 +21,10 @@ class Checkout extends StatelessWidget {
               padding: const EdgeInsets.only(top: 42),
               child: Row(children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 16,right: 77,),
+                  padding: const EdgeInsets.only(left: 16,right: 115,),
                   child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
                 ),
-                Text('Customer Support',style: TextStyle(fontSize:18,fontFamily:"Poppins" ),),
+                Text('Checkout',style: TextStyle(fontSize:18,fontFamily:"Poppins" ),),
 
               ],),
             ),
@@ -32,7 +32,7 @@ class Checkout extends StatelessWidget {
             children: [Padding(
               padding: const EdgeInsets.only(top: 35,left: 16,right: 16),
               child: Container(
-                width: 382,height: 600,
+                width: 382,height: 555,
                 decoration: BoxDecoration(color: mainWhite,borderRadius: BorderRadius.circular(25)),
               ),),
 
@@ -87,8 +87,8 @@ class Checkout extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 23,top:30,),
-                      width: 115,height: 64,
+                      margin: EdgeInsets.only(bottom: 23,top:30,right: 45),
+                      width: 131,height: 64,
                       decoration: BoxDecoration(color: mainGrey,borderRadius:BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8)),),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 25,right: 27),
@@ -126,10 +126,11 @@ class Checkout extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 11),
                       child: DottedLine(
-                        dashColor:Colors.purple,
-                        lineLength: 312,
+                        dashColor:mainGrey,
+                        lineLength: 330,
                         dashLength: 15,
                         dashGapLength: 15,
+                        lineThickness: 2,
                       ),
                     ),
                     Align(
@@ -149,77 +150,116 @@ class Checkout extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:419 ),
+                padding: const EdgeInsets.only(top:420 ),
                 child: Row(children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 45,top: 20),
-                    child: Text('5X5 Football pitch',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                    padding: const EdgeInsets.only(left: 43,top: 20),
+                    child: Text('5X5 Football pitch',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:100,top: 20),
-                    child: Text('QAR 120',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                    padding: const EdgeInsets.only(left:170,top: 20),
+                    child: Text('QAR 120',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
                   ),
                 ],),
               ),
               Padding(
-                padding: const EdgeInsets.only(top:445 ),
+                padding: const EdgeInsets.only(top:440 ),
                 child: Row(children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 45,top: 20),
-                    child: Text('Red Bull 600 ml',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                    padding: const EdgeInsets.only(left: 43,top: 20),
+                    child: Text('Red Bull 600 ml',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left:133,top: 20),
-                    child: Text('QAR 5',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
+                    padding: const EdgeInsets.only(left:197,top: 20),
+                    child: Text('QAR 5',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
                   ),
                 ],),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 45,left: 45,top: 500),
+                padding: const EdgeInsets.only(right: 43,left: 34,top: 485),
                 child: Container(
-                  height: 0.5,width: 380,
-                  color: Colors.black,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top:490 ),
-                child: Row(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 45,top: 20),
-                    child: Text('5X5 Football pitch',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:100,top: 20),
-                    child: Text('QAR 120',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
-                  ),
-                ],),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top:510 ),
-                child: Row(children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 45,top: 20),
-                    child: Text('Red Bull 600 ml',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left:133,top: 20),
-                    child: Text('QAR 5',style: TextStyle(fontSize: 15,fontFamily: 'Poppins',color: Color(0xff707070))),
-                  ),
-                ],),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 45,left: 45,top: 560),
-                child: Container(
-                  height:0.5,width: 380,
+                  height:1.5,width: 380,
                   color: mainGrey,
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top:475 ),
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 43,top: 20),
+                    child: Text('Sub Total',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:222,top: 20),
+                    child: Text('QAR 120',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                ],),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:495 ),
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 43,top: 20),
+                    child: Text('Discount',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:237,top: 20),
+                    child: Text('QAR 5',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',color: Color(0xff707070))),
+                  ),
+                ],),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 43,left: 43,top: 540),
+                child: Container(
+                  height:1.5,width: 380,
+                  color: mainGrey,
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(top:530 ),
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 41,top: 20),
+                    child: Text('Total',style: TextStyle(fontSize: 14,fontFamily: 'Poppins',color: Colors.black)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left:239.4,top: 20,right: 43),
+                    child: Text('QAR 120',style: TextStyle(fontSize: 13,fontFamily: 'Poppins',color: Colors.black)),
+                  ),
+                ],),
+              ),
+
 
 
 
             ]
           ),
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),color: mainGreen,),
+              width: 346,height:41 ,
+              margin: const EdgeInsets.only( top: 24,right: 34,left: 34 ,bottom:15),
+              child: Row(
+                children:[MaterialButton(
+                  onPressed: (){},
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 232),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('Pay',style: TextStyle(color:mainWhite,fontFamily: 'Poppins',fontSize: 16 ),),
+                        ),
+                        Image.asset("assets/arrow.png",),
+                      ],
+                    ),
+                  ),
+                ),
 
+                ],),
+
+
+            ),
           ]),
         )
     );

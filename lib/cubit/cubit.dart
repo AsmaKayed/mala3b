@@ -19,15 +19,41 @@ class AppCubit extends Cubit<AppStates>
 
   int currentIndex=0;
   int counter=1;
-  void minus(){
+  int secondcounter=1;
+  int thirdcounter=1;
+
+  void firstMinus(){
 
     counter--;
 
-    emit(MinusState());
+    emit(FirstMinusState());
   }
-  void plus(){
+  void thirdMinus(){
+
+    thirdcounter--;
+
+    emit(ThirdMinusState());
+  }
+  void thirdPlus(){
+
+    thirdcounter++;
+
+    emit(ThirdPlusState());
+  }
+
+  void secondMinus(){
+
+    secondcounter--;
+
+    emit(SecondMinusState());
+  }
+  void secondPlus(){
+    secondcounter++;
+    emit(SecondPlusState());
+  }
+  void firstPlus(){
     counter++;
-    emit(PlusState());
+    emit(FirstPlusState());
   }
   List<Widget> screens=[
      Home(),
@@ -40,10 +66,31 @@ class AppCubit extends Cubit<AppStates>
     emit(AppChangedBottomNavBar());
   }
   bool isClick =false;
+  bool firstisClick =false;
+  bool secondisClick =false;
+  bool thirdisClick =false;
 void changeStyle() {
   isClick = !isClick;
   CacheHelper.putData(key: 'isClick', value: isClick).then((value) {
     emit(StyleChangeState());
   });
 }
+  void firstchangeStyle() {
+    firstisClick = !firstisClick;
+    CacheHelper.putData(key: 'firstisClick', value: firstisClick).then((value) {
+      emit(FirstStyleChangeState());
+    });
+  }
+  void secondchangeStyle() {
+    secondisClick = !secondisClick;
+    CacheHelper.putData(key: 'secondisClick', value: secondisClick).then((value) {
+      emit(SecondStyleChangeState());
+    });
+  }
+  void thirdchangeStyle() {
+    thirdisClick = !thirdisClick;
+    CacheHelper.putData(key: 'thirdisClick', value: thirdisClick).then((value) {
+      emit(ThirdStyleChangeState());
+    });
+  }
 }
