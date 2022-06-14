@@ -69,7 +69,8 @@ class AppCubit extends Cubit<AppStates>
   bool firstisClick =false;
   bool secondisClick =false;
   bool thirdisClick =false;
-void changeStyle() {
+
+void changeStyle(int index) {
   isClick = !isClick;
   CacheHelper.putData(key: 'isClick', value: isClick).then((value) {
     emit(StyleChangeState());

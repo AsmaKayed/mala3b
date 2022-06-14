@@ -1,7 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/cubit/cubit.dart';
 import 'package:untitled/reausable%20components/reusable%20components.dart';
+
+import '../../cubit/states.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -28,13 +32,27 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       });
     }
   @override
+
+  List<String> categories=[
+        'Football',
+         'Basketball',
+    'Badminton',
+    'Cricket'
+     ];
+
   Widget build(BuildContext context) {
     var searchController=TextEditingController();
     Size size=MediaQuery.of(context).size;
 
 
 
-    return Scaffold(
+    return BlocProvider(
+      create: (BuildContext context)=>AppCubit(),
+
+      child: BlocConsumer<AppCubit,AppStates>(
+          listener: (BuildContext context,AppStates){},
+          builder: (BuildContext context,AppStates)
+          =>Scaffold(
       backgroundColor: Color(0XFF52A650),
       body:
       SingleChildScrollView(
@@ -117,13 +135,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
                         ),
                       Container(
+                        margin: EdgeInsets.only(top: 28,bottom: 10),
+
+                        height: 40,width: 402,
+                        child: ListView.separated(separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:categories.length,
+                  itemBuilder: (BuildContext context, int index)
+                          => InkWell(
+                            onTap: (){
+                              AppCubit.get(context).changeIndex(index);
+                            },
+                            child: Container(
+                              width: 115,height: 40,
+                              decoration: BoxDecoration(
+
+                                  color: AppCubit.get(context).currentIndex==index?Color(0xff313133):mainGrey,borderRadius: BorderRadius.circular(4)),
+                              child: Center(child: Text(categories[index],style: TextStyle(color: AppCubit.get(context).isClick?mainWhite:Color(0xffA5B2B9)),)),
+                            ),
+                          ),
+                           scrollDirection: Axis.horizontal,
+                            ),
+                      ),
+
+                      Container(
 
                         alignment: Alignment.topLeft,
                         child: TabBar(
                           controller: tabController,
                             labelColor: Colors.black,
-                            indicatorWeight: 2,
-                            indicatorSize: TabBarIndicatorSize.label,
+                            indicatorWeight: 4,
+                            indicatorPadding: EdgeInsets.only(left: 63,right: 63,bottom: 10),
                             indicatorColor: Color(0XFF79B62D),
                             unselectedLabelColor:Color(0XFF79B62D),
                             isScrollable: true,
@@ -133,116 +173,120 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                           Tab(text: 'Recommended',),]
                         ),
                       ),
-                        SizedBox(height: 18,),
+
                         Container(
-                          height: 400,width: 382,
+                          margin: const EdgeInsets.only(top: 10,),
+                          height: MediaQuery.of(context).size.height,width: 382,
                           child: TabBarView(
                               controller: tabController,
                               children: [
 
-                            ListView.builder(
-                                itemCount: 2,
-                                itemBuilder: (_,index)
-                            {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      children:[Container(
-                                        height: 144,
-                                        width: 382,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(24),
-                                          image: DecorationImage(
-                                            image: AssetImage('assets/slide.png'),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 0,),
+                              child: ListView.builder(
+                                  itemCount: 2,
+                                  itemBuilder: (_,index)
+                              {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Stack(
+                                        children:[Container(
+                                          height: 144,
+                                          width: 382,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(24),
+                                            image: DecorationImage(
+                                              image: AssetImage('assets/slide.png'),
 
-                                          )
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 107,left: 4,right: 3),
-                                        child: Opacity(
-
-                                          opacity: 0.6,
-                                          child: Stack(
-                                            children: [
-                                             Container(
-                                              width: 385,
-                                              alignment: Alignment.bottomCenter,
-                                              height: 37,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16),bottomRight:Radius.circular(16) ),
-                                                color: Color(0XFF79B62D),
-
-                                              ),
-                                            ),
-                                              Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                child: Text('Avaliable in 72 hrs',style: TextStyle(fontSize: 12,color: Colors.white,fontFamily: 'Poppins'),),
-                                              )],),),),]),
-                                    Row(
-                                      children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: const [
-                                          Text("Stamford Bridge",style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),),
-                                          Text("WESTBAY ,Doha,Qatar",style: TextStyle(fontSize: 10,fontFamily: 'Poppins',fontWeight: FontWeight.w100),)
-                                        ],),
-                                      ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 100,right: 8,top: 8,bottom: 8),
-                                          child: Container(
-
-                                            child:  Padding(
-                                              padding: const EdgeInsets.only(top: 3),
-                                              child: Column( children:[ Image.asset('assets/football.png',width:20 ,height: 20,),
-                                                Text("football",style: TextStyle(fontSize: 6,color: Colors.white),)
-
-                                              ]),
-                                            ),
-                                            height: 33,width: 33,
-                                            decoration: BoxDecoration(color: Color(0XFF79B62D),border:Border.all(width: 0.7,color: Colors.grey),borderRadius: BorderRadius.circular(4)),
+                                            )
                                           ),
                                         ),
-
-
                                         Padding(
-                                          padding: const EdgeInsets.all(0),
-                                          child: Container(
-                                            child:  Padding(
-                                              padding: const EdgeInsets.only(top: 2),
-                                              child: Column( children:[ Image.asset('assets/basketball.png',width:20 ,height: 20,),
-                                                Text("Basketball",style: TextStyle(fontSize: 6),)
+                                          padding: const EdgeInsets.only(top: 107,left: 4,right: 3),
+                                          child: Opacity(
 
-                                              ]),
+                                            opacity: 0.6,
+                                            child: Stack(
+                                              children: [
+                                               Container(
+                                                width: 385,
+                                                alignment: Alignment.bottomCenter,
+                                                height: 37,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16),bottomRight:Radius.circular(16) ),
+                                                  color: Color(0XFF79B62D),
+
+                                                ),
+                                              ),
+                                                Padding(
+                                                  padding: const EdgeInsets.all(8.0),
+                                                  child: Text('Avaliable in 72 hrs',style: TextStyle(fontSize: 12,color: Colors.white,fontFamily: 'Poppins'),),
+                                                )],),),),]),
+                                      Row(
+                                        children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: const [
+                                            Text("Stamford Bridge",style: TextStyle(fontSize: 15, fontFamily: 'Poppins'),),
+                                            Text("WESTBAY ,Doha,Qatar",style: TextStyle(fontSize: 10,fontFamily: 'Poppins',fontWeight: FontWeight.w100),)
+                                          ],),
+                                        ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 100,right: 8,top: 8,bottom: 8),
+                                            child: Container(
+
+                                              child:  Padding(
+                                                padding: const EdgeInsets.only(top: 3),
+                                                child: Column( children:[ Image.asset('assets/football.png',width:20 ,height: 20,),
+                                                  Text("football",style: TextStyle(fontSize: 6,color: Colors.white),)
+
+                                                ]),
+                                              ),
+                                              height: 33,width: 33,
+                                              decoration: BoxDecoration(color: Color(0XFF79B62D),border:Border.all(width: 0.7,color: Colors.grey),borderRadius: BorderRadius.circular(4)),
                                             ),
+                                          ),
+
+
+                                          Padding(
+                                            padding: const EdgeInsets.all(0),
+                                            child: Container(
+                                              child:  Padding(
+                                                padding: const EdgeInsets.only(top: 2),
+                                                child: Column( children:[ Image.asset('assets/basketball.png',width:20 ,height: 20,),
+                                                  Text("Basketball",style: TextStyle(fontSize: 6),)
+
+                                                ]),
+                                              ),
+                                              height: 33,width: 33,
+                                              decoration: BoxDecoration(color: Colors.white,border:Border.all(width: 0.7,color: Colors.grey),borderRadius: BorderRadius.circular(4)),
+                                            ),
+                                          ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                             child:  Padding(
+                                               padding: const EdgeInsets.only(top: 3),
+                                               child: Column( children:[ Image.asset('assets/volleyball.png',width:20 ,height: 20,),
+                                               Text("volleyball",style: TextStyle(fontSize: 6),)
+
+                                               ]),
+                                             ),
                                             height: 33,width: 33,
                                             decoration: BoxDecoration(color: Colors.white,border:Border.all(width: 0.7,color: Colors.grey),borderRadius: BorderRadius.circular(4)),
                                           ),
                                         ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Container(
-                                           child:  Padding(
-                                             padding: const EdgeInsets.only(top: 3),
-                                             child: Column( children:[ Image.asset('assets/volleyball.png',width:20 ,height: 20,),
-                                             Text("volleyball",style: TextStyle(fontSize: 6),)
-
-                                             ]),
-                                           ),
-                                          height: 33,width: 33,
-                                          decoration: BoxDecoration(color: Colors.white,border:Border.all(width: 0.7,color: Colors.grey),borderRadius: BorderRadius.circular(4)),
-                                        ),
-                                      ),
-                                    ],)
-                                  ],
-                                ),
-                              );
-                            }),
+                                      ],)
+                                    ],
+                                  ),
+                                );
+                              }),
+                            ),
                                 ListView.builder(
                                     itemCount: 2,
                                     itemBuilder: (_,index)
@@ -363,7 +407,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
             ],
           ),
-      ),
+    )) ),
 
 
     );
