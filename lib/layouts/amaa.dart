@@ -11,8 +11,16 @@ class Ama extends StatefulWidget {
 
 class _AmaState extends State<Ama> {
   // Generating a long list to fill the ListView
-  final List<Map> data = List.generate(100,
-          (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
+  List<String> categories=[
+    'Football',
+    'Basketball',
+    'Badminton',
+    'Cricket'
+  ];
+  final List<Map> data = List.generate(5,
+          (index) => {'id': index, 'name': ' ', 'isSelected': false}
+
+  );
 
   @override
   Widget build(BuildContext context) {

@@ -15,9 +15,11 @@ import 'package:untitled/modules/login/otp.dart';
 import 'package:untitled/modules/login/register.dart';
 import 'package:untitled/modules/mainModule/booking.dart';
 import 'package:untitled/modules/mainModule/homePage.dart';
+import 'package:untitled/modules/mainModule/profile.dart';
 import 'package:untitled/modules/venue/venueFirst.dart';
 import 'package:untitled/network/local/cacheHelper.dart';
 
+import 'layouts/amaa.dart';
 import 'layouts/splash.dart';
 
 void main() async{
@@ -27,7 +29,7 @@ void main() async{
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: Ama(),
+          home: FirstVenuePage(),
 
       ));
 }

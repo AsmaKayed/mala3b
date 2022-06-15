@@ -39,6 +39,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
     'Badminton',
     'Cricket'
      ];
+     final List<Map> data = List.generate(5,
+             (index) => {'id': index, 'isSelected': false}
+
+     );
 
   Widget build(BuildContext context) {
     var searchController=TextEditingController();
@@ -111,9 +115,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                     Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-
-                          child: CarouselSlider(
+                        CarouselSlider(
 
                           items: [
                             Container
@@ -133,23 +135,27 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                           aspectRatio: 0,
                   ), ),
 
-                        ),
+
                       Container(
-                        margin: EdgeInsets.only(top: 28,bottom: 10),
+                        margin: EdgeInsets.only(top: 28,bottom: 10,left: 16),
 
                         height: 40,width: 402,
                         child: ListView.separated(separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount:categories.length,
                   itemBuilder: (BuildContext context, int index)
                           => InkWell(
                             onTap: (){
-                              AppCubit.get(context).changeIndex(index);
+                              setState(() {
+                                data[index]['isSelected'] = !data[index]['isSelected'];
+                              });
                             },
                             child: Container(
                               width: 115,height: 40,
                               decoration: BoxDecoration(
 
-                                  color: AppCubit.get(context).currentIndex==index?Color(0xff313133):mainGrey,borderRadius: BorderRadius.circular(4)),
-                              child: Center(child: Text(categories[index],style: TextStyle(color: AppCubit.get(context).isClick?mainWhite:Color(0xffA5B2B9)),)),
+                                  color:data[index]['isSelected'] == true
+                                      ?Color(0xff313133)
+                                      : mainGrey,borderRadius: BorderRadius.circular(4)),
+                              child: Center(child: Text(categories[index],style: TextStyle(color: data[index]['isSelected'] == true?mainWhite:Color(0xffA5B2B9)),)),
                             ),
                           ),
                            scrollDirection: Axis.horizontal,
