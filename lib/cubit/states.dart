@@ -1,3 +1,5 @@
+import 'package:untitled/cubit/cubit.dart';
+
 abstract class AppStates{}
 
   class AppInitialState extends AppStates{}
@@ -17,6 +19,10 @@ class FirstStyleChangeState extends AppStates{}
 class SecondStyleChangeState extends AppStates{}
 
 class ThirdStyleChangeState extends AppStates{}
+
+class VenueFirstState extends AppStates{}
+
+
 
 class SelectedState extends AppStates{}
 

@@ -1,15 +1,43 @@
 
 import 'package:calendar_timeline/calendar_timeline.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import '../../appModels/appModels.dart';
 import '../../cubit/cubit.dart';
 import '../../cubit/states.dart';
 import '../../reausable components/reusable components.dart';
+import '../../layouts/date.dart' as date_util;
+class FirstVenuePage extends StatefulWidget {
 
-class FirstVenuePage extends StatelessWidget {
+  @override
+  State<FirstVenuePage> createState() => _FirstVenuePageState();
+}
+
+class _FirstVenuePageState extends State<FirstVenuePage> {
+
+  double width = 0.0;
+  double height = 0.0;
+  late ScrollController scrollController;
+  List<DateTime> currentMonthList = List.empty();
+  DateTime currentDateTime = DateTime.now();
+  List<String> todos = <String>[];
+  TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    currentMonthList = date_util.DateUtils.daysInMonth(currentDateTime);
+    currentMonthList.sort((a, b) => a.day.compareTo(b.day));
+    currentMonthList = currentMonthList.toSet().toList();
+    scrollController =
+        ScrollController(initialScrollOffset: 70.0 * currentDateTime.day);
+    super.initState();
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,92 +110,101 @@ class FirstVenuePage extends StatelessWidget {
                    Stack(
                        children: [Padding(
                          padding: const EdgeInsets.only(top: 32,left: 20),
-                         child: Container(
+                         child: InkWell(
+                           onTap: (){
+                             AppCubit.get(context).venueFirstStyle();
+                           },
+                           child: Container(
 
-                           width: 227,height: 73,
-                           decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(4),
-                               border: Border.all(color: mainGreen,width: 2)
-                           ),
-                           child:Center(
-                             child: Padding(
-                               padding: const EdgeInsets.only(top: 0,),
-                               child: Container(
-                                   child: Column(
-                                     children: [
-                                       Container(
-                                         margin: EdgeInsets.only(left: 5,top:5,bottom: 10,right: 148),
-                                         child: Text(
-                                           '5x5 Pitch',
-                                           style: TextStyle(
-                                               fontSize: 15),),
-                                       ),
-
-                                       Row(
-                                         children: [
-                                           Container(
-                                             child: Column(
-                                               children: [
-                                                 Row(
-
-                                                   children:[
-                                                     Container(
-                                                         margin: EdgeInsets.only(right: 5,left: 5),
-                                                         width: 67,
-                                                         height: 26,
-                                                         color: mainGrey,
-                                                         child: Center(
-                                                             child: Text(
-                                                               'Football',
-                                                               style: TextStyle(
-                                                                   fontSize: 13),))),
-
-                                                     Container(
-                                                         margin: EdgeInsets.only(right: 5,),
-                                                         width: 67,
-                                                         height: 26,
-                                                         color: mainGrey,
-                                                         child: Center(
-                                                             child: Text(
-                                                               'Volleyball',
-                                                               style: TextStyle(
-                                                                   fontSize: 13),))),
-
-                                                     Container(
-
-                                                         width: 67,
-                                                         height: 26,
-                                                         color: mainGrey,
-                                                         child: Center(
-                                                             child: Text(
-                                                               'Hockey',
-                                                               style: TextStyle(
-                                                                   fontSize: 13),))),
-
-                                                   ],
-
-                                                 ),
-
-
-                                               ],
-                                             ),
-                                           )
-                                         ],),
-                                     ],
-                                   )
-                               ),
+                             width: 227,height: 73,
+                             decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(4),
+                                 border: Border.all(color:AppCubit.get(context).venueFirst? mainGreen:mainGrey,width: 2)
                              ),
-                           ) ,
+                             child:Center(
+                               child: Padding(
+                                 padding: const EdgeInsets.only(top: 0,),
+                                 child: Container(
+                                     child: Column(
+                                       children: [
+                                         Container(
+                                           margin: EdgeInsets.only(left: 5,top:5,bottom: 10,right: 148),
+                                           child: Text(
+                                             '5x5 Pitch',
+                                             style: TextStyle(
+                                                 color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                 fontSize: 15),),
+                                         ),
+
+                                         Row(
+                                           children: [
+                                             Container(
+                                               child: Column(
+                                                 children: [
+                                                   Row(
+
+                                                     children:[
+                                                       Container(
+                                                           margin: EdgeInsets.only(right: 5,left: 5),
+                                                           width: 67,
+                                                           height: 26,
+                                                           color: mainGrey,
+                                                           child: Center(
+                                                               child: Text(
+                                                                 'Football',
+                                                                 style: TextStyle(
+                                                                     color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                                     fontSize: 13),))),
+
+                                                       Container(
+                                                           margin: EdgeInsets.only(right: 5,),
+                                                           width: 67,
+                                                           height: 26,
+                                                           color: mainGrey,
+                                                           child: Center(
+                                                               child: Text(
+                                                                 'Volleyball',
+                                                                 style: TextStyle(
+                                                                     color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                                     fontSize: 13),))),
+
+                                                       Container(
+
+                                                           width: 67,
+                                                           height: 26,
+                                                           color: mainGrey,
+                                                           child: Center(
+                                                               child: Text(
+                                                                 'Hockey',
+                                                                 style: TextStyle(
+                                                                   color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                                     fontSize: 13),))),
+
+                                                     ],
+
+                                                   ),
+
+
+                                                 ],
+                                               ),
+                                             )
+                                           ],),
+                                       ],
+                                     )
+                                 ),
+                               ),
+                             ) ,
+                           ),
                          ),
                        ),
                          Padding(
                            padding: const EdgeInsets.only(left:234,top: 25, ),
-                           child: Container(
+                           child: AppCubit.get(context).venueFirst?Container(
 
                              width: 18,height: 18,
                              decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
                              child:Icon(Icons.check,color: mainWhite,size: 16,),
-                           ),)
+                           ):null,)
                        ]
                    ),
                    Stack(
@@ -387,19 +424,16 @@ class FirstVenuePage extends StatelessWidget {
                   //  ),
 
 
-
-               Expanded(
-
-                 child:SingleChildScrollView(
+              SingleChildScrollView(
                    scrollDirection: Axis.horizontal,
 
                    child: Padding(
-                     padding: const EdgeInsets.only(right: 150,left: 20),
+                     padding: const EdgeInsets.only(right: 150,left: 20,bottom: 60),
                      child: Container(
                        width: 267,
                        height: 73,
                        child: GridView.builder(
-                           itemCount: 3,
+                           itemCount: 3, 
                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                          crossAxisCount: 3,
 
@@ -409,25 +443,95 @@ class FirstVenuePage extends StatelessWidget {
 
                            ), itemBuilder: (BuildContext context, int index)
                        =>buildSmallCard(index,),)),
-                   ))),
-               Center(
-                 child: Swiper(
-                   control: SwiperControl(color: Colors.black),
-                   itemCount: dateList.length,
-                   itemBuilder: (context, index) {
-                     return Container(
-                        child: Text(dateList[index],style:TextStyle(fontSize: 30)),
-                     );
-                   },
+                   )),
+               Padding(
+                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                 child: Container(
+                   color: Colors.red,
+                   width: 400,
+                   height: 50,
+                   child: CarouselSlider.builder(
+                     itemCount: date_util.DateUtils.months.length,
+                     itemBuilder: (BuildContext context, int index,int realIndex)=>Card(
+                       child: Text(
+                         date_util.DateUtils.months[index]  +
+                             ' ' +
+                             currentDateTime.year.toString(),
+                         style: const TextStyle(
+                             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                       ),
+                     ), options: CarouselOptions(height: 100,
+                     initialPage: currentDateTime.month - 1,
+                   ),
+                   ),
+                 ),
+               ),
+               Container(
+                 width: width,
+                 height: 56,
+                 child: ListView.builder(
+                   controller: scrollController,
+                   scrollDirection: Axis.horizontal,
+                   physics: const ClampingScrollPhysics(),
+                   shrinkWrap: true,
+                   itemCount: currentMonthList.length,
+                   itemBuilder: (BuildContext context, int index) {
+                     return  Padding(
+                         padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                         child: GestureDetector(
+                           onTap: () {
+                             setState(() {
+                               currentDateTime = currentMonthList[index];
+                             });
+                           },
+                           child: Container(
+                             width: 56,
+                             height: 56,
+                             decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(8),
+                                 color: (currentMonthList[index].day != currentDateTime.day)? mainWhite: mainWhite,
+                                 border: Border.all(width: 2,color: (currentMonthList[index].day!= currentDateTime.day)? mainWhite: mainGreen,)
+
+                             ),
+
+
+                             child: Center(
+                               child: Column(
+                                 mainAxisAlignment: MainAxisAlignment.center,
+                                 children: <Widget>[
+                                   Text(
+                                     currentMonthList[index].day.toString(),
+                                     style: TextStyle(
+                                         fontSize: 17,
+                                         fontFamily: 'Poppins',
+                                         color:
+                                         (currentMonthList[index].day != currentDateTime.day)
+                                             ? Color(0xff707070)
+                                             : Colors.black),
+                                   ),
+                                   Text(
+                                     date_util.DateUtils
+                                         .weekdays[currentMonthList[index].weekday - 1],
+                                     style: TextStyle(
+                                         fontSize: 9,
+                                         fontFamily: 'Poppins',
+                                         color:
+                                         (currentMonthList[index].day != currentDateTime.day)
+                                             ? Color(0xff707070)
+                                             : Colors.black),
+                                   )],),),),
+                         ));},
                  ),
                ),
 
-             ],),
-            ),
+             ],
+             ),
 
 
 
-        ]),
+
+
+            )  ]),
 
 
         ]
@@ -436,8 +540,6 @@ class FirstVenuePage extends StatelessWidget {
 
     )));
   }
-
-
 
   Widget buildSmallCard(int index)=>Container(
     padding: const EdgeInsets.only(left: 0,top: 0),
@@ -459,9 +561,6 @@ class FirstVenuePage extends StatelessWidget {
       ),),
     ),
   );
-
-
-
 }
 
 
