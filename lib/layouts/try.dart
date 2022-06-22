@@ -3,6 +3,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/cubit/cubit.dart';
+import 'package:untitled/reausable%20components/reusable%20components.dart';
 
 import '../cubit/states.dart';
 
@@ -24,14 +25,17 @@ class HomeLayout extends StatelessWidget {
                       fallback: (context)=>Center(child: CircularProgressIndicator(),),
                     ),
              bottomNavigationBar: BottomNavigationBar(
+               type:  BottomNavigationBarType.fixed,
                selectedLabelStyle: TextStyle(fontFamily:'SF Pro Display',fontSize: 10),
                unselectedLabelStyle: TextStyle(fontFamily:'SF Pro Display',fontSize: 10),
                currentIndex: AppCubit.get(context).currentIndex,
+               selectedItemColor: mainGreen,
+               unselectedItemColor: Colors.black,
                onTap: (index){
                  AppCubit.get(context).changeIndex(index);
                },
                backgroundColor: Colors.white,
-               fixedColor: Color(0XFF79B62D),
+
                iconSize: 20,
                elevation:5,
                items:  [

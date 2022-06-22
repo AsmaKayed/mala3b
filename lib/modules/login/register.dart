@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:untitled/layouts/try.dart';
 import 'package:untitled/modules/mainModule/homePage.dart';
 
 import '../../reausable components/reusable components.dart';
@@ -10,7 +11,8 @@ class Register extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final otpController=TextEditingController();
+    final nameController=TextEditingController();
+    final emailController=TextEditingController();
     return Scaffold(
         body: Stack(
             children: [
@@ -33,20 +35,20 @@ class Register extends StatelessWidget {
                     SizedBox(height: 24,),
                     Padding(
                       padding: const EdgeInsets.only(left:24, right: 24, ),
-                      child: defaultTextField(controller: otpController , validate: (value){}, label: "    Enter your name", ),
+                      child: defaultTextField(controller: nameController , validate: (value){}, label: "    Enter your name", ),
                     ),
 
 
                     SizedBox(height: 24,),
                     Padding(
                       padding: const EdgeInsets.only(left:24, right: 24, ),
-                      child: defaultTextField(controller: otpController , validate: (value){}, label: "    Enter your Email", ),
+                      child: defaultTextField(controller: emailController , validate: (value){}, label: "    Enter your Email", ),
                     ),
                     SizedBox(height: 40,),
                     Container(
                       margin: const EdgeInsets.only(left:24,  ),
                       child: Row( children:[defaultBottom(imageText:"assets/arrow.png",function: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeLayout()));
                       }, text:'Register', width: 366 ),
 
                       ],),

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:untitled/cubit/states.dart';
+import 'package:untitled/layouts/myAccount.dart';
 import 'package:untitled/modules/mainModule/booking.dart';
 import 'package:untitled/modules/mainModule/homePage.dart';
 import 'package:untitled/modules/mainModule/profile.dart';
@@ -58,7 +59,7 @@ class AppCubit extends Cubit<AppStates>
   List<Widget> screens=[
      Home(),
     Booking(),
-    Profile(),
+    Account(),
   ];
   void changeIndex(int index)
   {

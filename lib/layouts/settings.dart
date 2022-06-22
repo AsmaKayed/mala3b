@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import '../reausable components/reusable components.dart';
 import 'package:dotted_border/dotted_border.dart';
+
+import 'myAccount.dart';
 class Settings extends StatefulWidget {
   const Settings({Key? key}) : super(key: key);
 
@@ -21,9 +23,12 @@ class _SettingsState extends State<Settings> {
       Padding(
       padding: const EdgeInsets.only(top: 42),
       child: Row(children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16,right: 123,),
-          child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+        InkWell(
+          onTap: (){  Navigator.pop(context, MaterialPageRoute(builder: (context)=>Account()));},
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16,right: 123,),
+            child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+          ),
         ),
         Text('Settings',style: TextStyle(fontSize:18,fontFamily:"Poppins" ),),
 

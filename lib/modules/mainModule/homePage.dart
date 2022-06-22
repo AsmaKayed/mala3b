@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/cubit/cubit.dart';
+import 'package:untitled/modules/venue/venueFirst.dart';
 import 'package:untitled/reausable%20components/reusable%20components.dart';
 
 import '../../cubit/states.dart';
+import '../../layouts/notifications.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -72,9 +74,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                   ),
                   SizedBox(width: 104,),
                   Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 48,right: 16),
-                      child: const Icon(Icons.notifications_none,color: Colors.white,),
+                    child: InkWell(
+                      onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Notifications()));},
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 48,right: 16),
+                        child: const Icon(Icons.notifications_none,color: Colors.white,),
+                      ),
                     ),
                   ),
                 ],
@@ -199,15 +204,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Stack(
-                                        children:[Container(
-                                          height: 144,
-                                          width: 382,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(24),
-                                            image: DecorationImage(
-                                              image: AssetImage('assets/slide.png'),
+                                        children:[InkWell(
+                                          onTap:(){  Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstVenuePage()));},
+                                          child: Container(
+                                            height: 144,
+                                            width: 382,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(24),
+                                              image: DecorationImage(
+                                                image: AssetImage('assets/slide.png'),
 
-                                            )
+                                              )
+                                            ),
                                           ),
                                         ),
                                         Padding(

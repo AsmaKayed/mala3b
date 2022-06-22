@@ -190,7 +190,7 @@ class PaymentSuccessful extends StatelessWidget {
                   child: Center(
                     child: Container(
                       color: Color(0xff707070),
-                      height: 0.7,width: 326,
+                      height: 0.1,width: 326,
                     ),
                   ),
                 ),

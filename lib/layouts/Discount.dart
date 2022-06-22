@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/layouts/myAccount.dart';
 import '../reausable components/reusable components.dart';
 
 class Discount extends StatelessWidget {
@@ -15,9 +16,12 @@ class Discount extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 42,bottom: 41),
             child: Row(children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 16,right: 120,),
-                child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+              InkWell(
+                onTap: (){  Navigator.pop(context, MaterialPageRoute(builder: (context)=>Account()));},
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16,right: 120,),
+                  child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+                ),
               ),
               Text('Discount',style: TextStyle(fontSize:18,fontFamily:"Poppins" ),),
 

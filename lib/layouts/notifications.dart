@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:untitled/layouts/try.dart';
 
 import '../reausable components/reusable components.dart';
 
@@ -17,9 +18,12 @@ class Notifications extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 42),
               child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 16,right: 108,),
-                  child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+                InkWell(
+                  onTap: (){  Navigator.pop(context, MaterialPageRoute(builder: (context)=>HomeLayout()));},
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16,right: 108,),
+                    child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+                  ),
                 ),
                 Text('Notification',style: TextStyle(fontSize:18,fontFamily:"Poppins" ),),
 

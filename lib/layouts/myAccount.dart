@@ -3,6 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:untitled/layouts/Discount.dart';
+import 'package:untitled/layouts/customer%20support.dart';
+import 'package:untitled/layouts/notifications.dart';
+import 'package:untitled/layouts/settings.dart';
+import 'package:untitled/layouts/try.dart';
+import 'package:untitled/modules/mainModule/booking.dart';
+import 'package:untitled/modules/mainModule/profile.dart';
 
 import '../cubit/cubit.dart';
 import '../cubit/states.dart';
@@ -33,10 +40,13 @@ class _AccountState extends State<Account> {
         child: Column(children: [
           Row(
             children: [
-              Container(
-                alignment: Alignment.topLeft,
-                  margin: EdgeInsets.only(top: 43,left: 16,),
-                  child: Icon(Icons.arrow_back_outlined,color: mainGreen,size: 25,)),
+              InkWell(
+                onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeLayout()));},
+                child: Container(
+                  alignment: Alignment.topLeft,
+                    margin: EdgeInsets.only(top: 43,left: 16,),
+                    child: Icon(Icons.arrow_back_outlined,color: mainGreen,size: 25,)),
+              ),
               Container(
                   margin: EdgeInsets.only(top: 43,left: 103,right: 151),
                   child: Text('My Account',style: TextStyle(fontFamily: 'Poppins',fontSize: 18))),
@@ -106,21 +116,24 @@ class _AccountState extends State<Account> {
 
           Padding(
             padding: const EdgeInsets.only(left: 33,top: 25),
-            child: Container(
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child:Image.asset('assets/notification.png')
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 204),
-                  child: Text('Notification',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward_ios,size: 20,),
-                ),
-              ],),
+            child: InkWell(
+              onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Notifications()));},
+              child: Container(
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child:Image.asset('assets/notification.png')
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 204),
+                    child: Text('Notification',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ],),
+              ),
             ),
           ),
           Padding(
@@ -129,21 +142,24 @@ class _AccountState extends State<Account> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 33,),
-            child: Container(
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Image.asset('assets/discount.png')),
+            child: InkWell(
+              onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Discount()));},
+              child: Container(
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Image.asset('assets/discount.png')),
 
-                Padding(
-                  padding: const EdgeInsets.only(right: 226),
-                    child: Text('Discount',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward_ios,size: 20,),
-                ),
-              ],),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 226),
+                      child: Text('Discount',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ],),
+              ),
             ),
           ),
           Padding(
@@ -152,21 +168,24 @@ class _AccountState extends State<Account> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 33,),
-            child: Container(
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Image.asset('assets/account.png')),
+            child: InkWell(
+              onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));},
+              child: Container(
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Image.asset('assets/account.png')),
 
-                Padding(
-                  padding: const EdgeInsets.only(right: 220),
-                  child: Text('My Profile',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward_ios,size: 20,),
-                ),
-              ],),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 220),
+                    child: Text('My Profile',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ],),
+              ),
             ),
           ),
           Padding(
@@ -175,21 +194,24 @@ class _AccountState extends State<Account> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 33,),
-            child: Container(
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Image.asset('assets/cal.png')
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 200),
-                  child: Text('My Bookings',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward_ios,size: 20,),
-                ),
-              ],),
+            child: InkWell(
+              onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Booking()));},
+              child: Container(
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Image.asset('assets/cal.png')
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 200),
+                    child: Text('My Bookings',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ],),
+              ),
             ),
           ),
           Padding(
@@ -198,21 +220,24 @@ class _AccountState extends State<Account> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 33,),
-            child: Container(
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Image.asset('assets/settings.png')
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 233),
-                  child: Text('Settings',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward_ios,size: 20,),
-                ),
-              ],),
+            child: InkWell(
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>Settings()));},
+              child: Container(
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Image.asset('assets/settings.png')
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 233),
+                    child: Text('Settings',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ],),
+              ),
             ),
           ),
           Padding(
@@ -242,23 +267,26 @@ class _AccountState extends State<Account> {
             padding: const EdgeInsets.only(top: 16,bottom: 16),
             child: Container(height: 0.5,width: 364,color: mainGrey,),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 33,),
-            child: Container(
-              child: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Image.asset('assets/customer-support.png')
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 150),
-                  child: Text('Customer Support',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 15),
-                  child: Icon(Icons.arrow_forward_ios,size: 20,),
-                ),
-              ],),
+          InkWell(
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerSupport()));},
+            child: Padding(
+              padding: const EdgeInsets.only(left: 33,),
+              child: Container(
+                child: Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Image.asset('assets/customer-support.png')
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 150),
+                    child: Text('Customer Support',style: TextStyle(fontSize: 16,color:Color(0xff313133),fontFamily:'Poppins' ), ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ],),
+              ),
             ),
           ),
           Padding(

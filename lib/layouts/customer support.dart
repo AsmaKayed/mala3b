@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/reausable%20components/reusable%20components.dart';
 
+import 'myAccount.dart';
+
 class  CustomerSupport extends StatelessWidget {
 
 
@@ -17,9 +19,12 @@ class  CustomerSupport extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(top: 42),
         child: Row(children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16,right: 77,),
-            child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+          InkWell(
+            onTap: (){  Navigator.pop(context, MaterialPageRoute(builder: (context)=>Account()));},
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16,right: 77,),
+              child: Image.asset('assets/backArrow.png',width: 25,height: 25,),
+            ),
           ),
           Text('Customer Support',style: TextStyle(fontSize:18,fontFamily:"Poppins" ),),
 

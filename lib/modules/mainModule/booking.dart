@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/reausable%20components/reusable%20components.dart';
 
+import '../../layouts/myAccount.dart';
+
 class Booking extends StatelessWidget {
   const Booking({Key? key}) : super(key: key);
 
@@ -15,9 +17,12 @@ class Booking extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Column(
           children: [
-            Container(
-             margin: EdgeInsets.only(top: 43,left: 16,right: 368),
-                child: Icon(Icons.arrow_back_outlined,color: mainGreen,size: 25,)),
+            InkWell(
+              onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Account()));},
+              child: Container(
+               margin: EdgeInsets.only(top: 43,left: 16,right: 368),
+                  child: Icon(Icons.arrow_back_outlined,color: mainGreen,size: 25,)),
+            ),
             Row(
               children: [
                 Container(
