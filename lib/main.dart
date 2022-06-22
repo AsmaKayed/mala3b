@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled/layouts/Discount.dart';
-import 'package:untitled/layouts/ama.dart';
 import 'package:untitled/layouts/bookingSummary.dart';
 import 'package:untitled/layouts/checkout.dart';
 import 'package:untitled/layouts/customer%20support.dart';
@@ -18,8 +17,6 @@ import 'package:untitled/modules/mainModule/homePage.dart';
 import 'package:untitled/modules/mainModule/profile.dart';
 import 'package:untitled/modules/venue/venueFirst.dart';
 import 'package:untitled/network/local/cacheHelper.dart';
-
-import 'layouts/amaa.dart';
 import 'layouts/splash.dart';
 
 void main() async{

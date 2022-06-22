@@ -1,6 +1,7 @@
 
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -16,7 +17,7 @@ class FirstVenuePage extends StatefulWidget {
 }
 
 class _FirstVenuePageState extends State<FirstVenuePage> {
-
+  final CarouselController _controller = CarouselController();
   double width = 0.0;
   double height = 0.0;
   late ScrollController scrollController;
@@ -24,7 +25,16 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
   DateTime currentDateTime = DateTime.now();
   List<String> todos = <String>[];
   TextEditingController controller = TextEditingController();
-
+List<String> duration=[
+  '60 ',
+  '90 ',
+  '120 ',
+];
+  List<String> slots=[
+    '01:30pm ',
+    '02:00pm ',
+    '02:30pm ',
+  ];
   @override
   void initState() {
     currentMonthList = date_util.DateUtils.daysInMonth(currentDateTime);
@@ -85,7 +95,7 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
 
             Container(
               margin: EdgeInsets.only(top: 230),
-              width: 414,height: 857,
+              width: 414,height:935,
               decoration: BoxDecoration(color:mainWhite,borderRadius: BorderRadius.circular(35)),
              child: Column(children: [
                Row(children: [
@@ -100,16 +110,16 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                  ),
 
                ],),
-               const Padding(
-                 padding: EdgeInsets.only(left: 24,top: 39,right:292 ),
-                 child: Text('Select pitch',style: TextStyle(fontSize: 16,fontFamily: 'Poppins',),),
+               Container(
+                 padding: const EdgeInsets.only(right:299,top:42,left: 20),
+                 child: Text('Select Pitch',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
                ),
                SingleChildScrollView(
                  scrollDirection: Axis.horizontal,
                  child: Row(children:[
                    Stack(
                        children: [Padding(
-                         padding: const EdgeInsets.only(top: 32,left: 20),
+                         padding: const EdgeInsets.only(top: 13,left: 20),
                          child: InkWell(
                            onTap: (){
                              AppCubit.get(context).venueFirstStyle();
@@ -198,7 +208,7 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                          ),
                        ),
                          Padding(
-                           padding: const EdgeInsets.only(left:234,top: 25, ),
+                           padding: const EdgeInsets.only(left:234,top: 10, ),
                            child: AppCubit.get(context).venueFirst?Container(
 
                              width: 18,height: 18,
@@ -209,7 +219,7 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                    ),
                    Stack(
                        children: [Padding(
-                         padding: const EdgeInsets.only(top: 32,left: 20),
+                         padding: const EdgeInsets.only(top: 13,left: 20),
                          child: Container(
 
                            width: 227,height: 73,
@@ -289,7 +299,7 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                          ),
                        ),
                          Padding(
-                           padding: const EdgeInsets.only(left:234,top: 25, ),
+                           padding: const EdgeInsets.only(left:234,top: 10, ),
                            child: Container(
 
                              width: 18,height: 18,
@@ -428,48 +438,83 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                    scrollDirection: Axis.horizontal,
 
                    child: Padding(
-                     padding: const EdgeInsets.only(right: 150,left: 20,bottom: 60),
+                     padding: const EdgeInsets.only(right: 150,left: 20,top:11,bottom: 34),
                      child: Container(
-                       width: 267,
-                       height: 73,
+                         width: 267,
+                         height: 81,
                        child: GridView.builder(
-                           itemCount: 3, 
+                           padding: EdgeInsets.zero,
+                         physics: NeverScrollableScrollPhysics(),
+                           itemCount: 3,
                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                          crossAxisCount: 3,
-
-                         mainAxisSpacing: 10,
-
                          crossAxisSpacing: 12,
+                         mainAxisSpacing: 3,
 
                            ), itemBuilder: (BuildContext context, int index)
                        =>buildSmallCard(index,),)),
                    )),
+
+               Container(
+                 padding: const EdgeInsets.only(right:301,left:20),
+                 child: Text('Select Date',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
+               ),
                Padding(
-                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                 child: Container(
-                   color: Colors.red,
-                   width: 400,
-                   height: 50,
-                   child: CarouselSlider.builder(
-                     itemCount: date_util.DateUtils.months.length,
-                     itemBuilder: (BuildContext context, int index,int realIndex)=>Card(
-                       child: Text(
-                         date_util.DateUtils.months[index]  +
-                             ' ' +
-                             currentDateTime.year.toString(),
-                         style: const TextStyle(
-                             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
+                 padding: const EdgeInsets.only(
+                   top:25,left:0,right:0,
+                 ),
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   children: [
+                      Container(
+                         width: 30,
+
+                         child: InkWell(
+
+                             onTap: () => _controller.previousPage(),
+                             child: Center(child: Icon(Icons.arrow_back_ios,color:mainGreen)) ),
                        ),
-                     ), options: CarouselOptions(height: 100,
-                     initialPage: currentDateTime.month - 1,
-                   ),
+                 Padding(
+                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                   child: Container(
+                     width: 145,
+                     height: 50,
+                     child: CarouselSlider.builder(
+                       carouselController: _controller,
+                       itemCount: date_util.DateUtils.months.length,
+                       itemBuilder: (BuildContext context, int index,int realIndex)=>Container(
+                        width:140,
+                         child: Center(
+                           child: Text(
+                             date_util.DateUtils.months[index]  ,
+
+                             style: const TextStyle(
+                                 color: Colors.black,fontFamily: 'Poppins', fontSize: 16),
+                           ),
+                         ),
+                       ), options: CarouselOptions(
+                       initialPage: currentDateTime.month - 1,
+                     ),
+                     ),
                    ),
                  ),
+                      Container(
+                         width: 30,
+                         child: InkWell(
+
+                             onTap: () => _controller.nextPage(),
+                             child: Center(child: Icon(Icons.arrow_forward_ios,color:mainGreen)) ),
+                       ),
+
+                   ]),
                ),
                Container(
-                 width: width,
+                margin:EdgeInsets.only(top:24,left:20,right: 20,bottom: 20),
+                 width: 375,
                  height: 56,
                  child: ListView.builder(
+                   padding: EdgeInsets.zero,
                    controller: scrollController,
                    scrollDirection: Axis.horizontal,
                    physics: const ClampingScrollPhysics(),
@@ -490,7 +535,7 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                              decoration: BoxDecoration(
                                  borderRadius: BorderRadius.circular(8),
                                  color: (currentMonthList[index].day != currentDateTime.day)? mainWhite: mainWhite,
-                                 border: Border.all(width: 2,color: (currentMonthList[index].day!= currentDateTime.day)? mainWhite: mainGreen,)
+                                 border: Border.all(width: 2,color: (currentMonthList[index].day!= currentDateTime.day)? mainGrey: mainGreen,)
 
                              ),
 
@@ -524,6 +569,150 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
                  ),
                ),
 
+               Container(
+                 padding: const EdgeInsets.only(right:324,top:33,left: 20),
+                 child: Text('Duration',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
+               ),
+
+               Container(
+                 height: 50,
+                 width:400,
+                 margin:EdgeInsets.only(left:20,top:16),
+                 child: ListView.builder(
+                   padding: EdgeInsets.zero,
+                   scrollDirection: Axis.horizontal,
+                   itemCount: 3,
+                   itemBuilder: (BuildContext context, int index)=>
+                       Padding(
+                         padding: const EdgeInsets.only(right:10),
+                         child: Container(
+                           width:102,height:40,
+                           decoration :BoxDecoration(
+                             border:Border.all(width:1,color: mainGreen),
+                             borderRadius: BorderRadius.circular(4),
+                           ),
+                           child:Row(
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: Image.asset('assets/clock.png'),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(top:5.0),
+                                 child: Column(
+                                   mainAxisAlignment: MainAxisAlignment.start,
+                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                   children: [
+                                     Text(duration[index],overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
+                                     'Poppins',fontSize: 12,color: Color(0xff1D1D1B)),),
+                                     Text('minutes',overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
+                                     'Poppins',fontSize: 12,color: Color(0xff1D1D1B)),),
+                                   ],
+                                 ),
+                               ),
+                             ],
+                           ),
+
+                         ),
+                       ),
+                 ),
+               ),   Container(
+                 padding: const EdgeInsets.only(right:311,top:33,left: 20),
+                 child: Text('Time Slots',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
+               ),
+
+               Container(
+                 height: 40,
+                 width:256,
+                 margin:EdgeInsets.only(left:20,top:16,right: 135),
+                 child: ListView.builder(
+                   padding: EdgeInsets.zero,
+                   scrollDirection: Axis.horizontal,
+                   itemCount: 3,
+                   itemBuilder: (BuildContext context, int index)=>
+                       Padding(
+                         padding: const EdgeInsets.only(right:10),
+                         child: Container(
+                           width:77,height:40,
+                           decoration :BoxDecoration(
+                             border:Border.all(width:1,color: mainGreen),
+                             borderRadius: BorderRadius.circular(4),
+                           ),
+
+
+                              child: Padding(
+                                 padding: const EdgeInsets.only(top:5.0),
+                                 child:
+                                     Center(
+                                       child: Text(slots[index],overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
+                                       'Poppins',fontSize: 14,color: Color(0xff1D1D1B)),),
+                                     ),
+
+
+                               ),
+
+
+                         ),
+                       ),
+                 ),
+               ),
+               InkWell(
+                 onTap: (){},
+                 child: Card(
+                   elevation:2,
+                   child: Container(color: Colors.white,
+                     width: 382,height: 80,
+                     margin: EdgeInsets.only(left: 16,right: 16,top: 38),
+                     child: Row(
+                       children: [
+                         Column(children: [
+                           Padding(
+                             padding: const EdgeInsets.only(left:24,right:35,top:24),
+                             child: Text('Amount',style: TextStyle(
+                               fontFamily: 'Poppins',fontSize: 12,color: Color(0xff313133),
+                             ),),
+                           ),
+                           Padding(
+                             padding: const EdgeInsets.only(left:24,),
+                             child: Text('QAR 0.00',style: TextStyle(
+                               fontFamily: 'Poppins',fontSize: 19,color: mainGreen,
+                             ),),
+                           ),
+                         ],),
+
+                         InkWell(
+                           child: Container(
+                             margin: EdgeInsets.only(left: 135,top: 17),
+                             width: 122,height:41,
+                             decoration: BoxDecoration(color:mainGreen,borderRadius: BorderRadius.circular(4),),
+                            child:  Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment:CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                      child: Text('Next',style: TextStyle(color:mainWhite,fontFamily: 'Poppins',fontSize: 16 ),)),
+
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset("assets/arrow.png",color: mainWhite,),
+                                ),
+                              ],
+                            ),
+                           ),
+                         ),
+
+
+
+                       ],
+
+                     ),
+
+                   ),
+                 ),
+               ),
+               SizedBox(height:20),
+
+
              ],
              ),
 
@@ -542,25 +731,26 @@ class _FirstVenuePageState extends State<FirstVenuePage> {
   }
 
   Widget buildSmallCard(int index)=>Container(
-    padding: const EdgeInsets.only(left: 0,top: 0),
-    width: 20,height: 20,
+    height: 73,width: 82,
+    padding: const EdgeInsets.only(top:0),
     decoration: BoxDecoration(border: Border.all(width:2,color: mainGreen),borderRadius: BorderRadius.circular(4)),
-    child: Card(
-      elevation: 0,
-
-      child: Container(
-        margin: EdgeInsets.only(right: 10,left: 10),
         child: Center(
-        child: Column(children: [
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(0),
             child: Image.asset('assets/secondfootball.png',width: 27,height: 27,),
           ),
-            Center(child: Text('Football',style: TextStyle(fontSize: 13),)),
+            Center(child: Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Text('Football',style: TextStyle(fontSize: 13),),
+            )),
         ],),
-      ),),
-    ),
-  );
+      ),);
+
+
 }
 
 
