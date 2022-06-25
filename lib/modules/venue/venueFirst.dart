@@ -40,6 +40,7 @@ List<String> duration=[
     '02:00pm ',
     '02:30pm ',
   ];
+  bool? isSelected=true;
   @override
   void initState() {
 
@@ -60,17 +61,22 @@ List<String> duration=[
     setState(() {
     });
   }
+  List<PitchModel>? pitch=[
+    PitchModel(size: '5x5 pitch', name: 'football', image: Image.asset('assets/secondfootball.png' ,),),
+    PitchModel(size: '6x6 pitch', name: 'volleyball', image:Image.asset('assets/secondbasketball.png'),),
+  ];
 
+  final List<Map> data = List.generate(2,
+          (index) => {'id': index, 'isSelected': false}
 
-
+  );
+  int selectedIndex = -1;
   @override
   Widget build(BuildContext context) {
-    List _selectedIndexs=[];
+
+
     bool viewObject=true;
-    List<PitchModel>? pitch=[
-      PitchModel(size: '5x5 pitch', name: 'football', image: Image.asset('assets/secondfootball.png' ,),),
-      PitchModel(size: '6x6 pitch', name: 'volleyball', image:Image.asset('assets/secondbasketball.png'),),
-    ];
+
     final dateList = [
      'january',
       'February',
@@ -78,7 +84,6 @@ List<String> duration=[
       'April',
     ];
 
-    int? selectedIndex;
     return BlocProvider(
         create: (BuildContext context)=>AppCubit(),
 
@@ -150,16 +155,13 @@ List<String> duration=[
                            children: [Padding(
                              padding: const EdgeInsets.only(top: 13,left: 20),
                              child: InkWell(
-                               onTap: (){
-                                  setState(() {
-                                  selectedIndex = index;
-                               });},
+                               onTap: () => setState(() => selectedIndex=index),
                                child: Container(
 
                                  width: 227,height: 73,
                                  decoration: BoxDecoration(
                                      borderRadius: BorderRadius.circular(4),
-                                     border: Border.all(color:selectedIndex==index ? mainGreen:mainGrey,width: 2)
+                                     border: Border.all(color: (selectedIndex==index)? mainGreen:mainGrey,width: 2)
                                  ),
                                  child:Center(
                                    child: Padding(
