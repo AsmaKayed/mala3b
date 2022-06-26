@@ -84,7 +84,7 @@ class  CustomerSupport extends StatelessWidget {
         ),
       ),
       Container(
-        margin: EdgeInsets.only(bottom: 23),
+        margin: EdgeInsets.only(bottom: 20),
         width: 382,height: 80,
         decoration: BoxDecoration(color: mainGreen,borderRadius: BorderRadius.circular(8),),
         child: MaterialButton(onPressed: (){},

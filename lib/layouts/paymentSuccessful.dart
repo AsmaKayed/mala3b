@@ -1,5 +1,6 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/layouts/try.dart';
 
 import '../reausable components/reusable components.dart';
 
@@ -15,8 +16,14 @@ class PaymentSuccessful extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(children: [
+          InkWell(
+            onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeLayout()));},
+            child: Container(
+                margin: EdgeInsets.only(top: 43,left: 16,right: 368),
+                child: Icon(Icons.arrow_back_outlined,color: mainGreen,size: 25,)),
+          ),
           Padding(
-            padding: const EdgeInsets.only(top: 47,),
+            padding: const EdgeInsets.only(top: 20,),
             child: Stack(
               children:[ Padding(
                 padding: const EdgeInsets.only(left: 20,right: 16),

@@ -1,6 +1,7 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:untitled/layouts/try.dart';
 import 'package:untitled/reausable%20components/reusable%20components.dart';
 
 import '../../layouts/myAccount.dart';
@@ -296,7 +297,7 @@ class Booking extends StatelessWidget {
 
 
                                 ],),
-                              onPressed: () {},),),),
+                              onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeLayout()));},),),),
 
                       ],
                     ),

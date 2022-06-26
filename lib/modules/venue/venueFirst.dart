@@ -123,7 +123,7 @@ List<String> duration=[
 
             Container(
               margin: EdgeInsets.only(top: 230),
-              width: 414,height:935,
+              width: 414,height:830,
               decoration: BoxDecoration(color:mainWhite,borderRadius: BorderRadius.circular(35)),
              child: Column(children: [
                Row(children: [
@@ -501,7 +501,7 @@ List<String> duration=[
                              child: Container(
                                width:77,height:40,
                                decoration :BoxDecoration(
-                                 border:Border.all(width:1,color:(forthSelectedIndex==index)?mainGreen: mainGrey),
+                                 border:Border.all(width:2,color:(forthSelectedIndex==index)?mainGreen: mainGrey),
                                  borderRadius: BorderRadius.circular(4),
                                ),
 
@@ -593,7 +593,7 @@ List<String> duration=[
                    ),
                  ),
                ),
-               SizedBox(height:20),
+
 
 
              ],
@@ -945,7 +945,7 @@ List<String> duration=[
                                                 ],),
 
                                                 InkWell(
-                                                  onTap: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingSummary()));},
+                                                  onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>BookingSummary()));},
                                                   child: Container(
                                                     child: Padding(
                                                       padding: const EdgeInsets.only(top: 8.0),

@@ -18,7 +18,7 @@ class BookingSummary extends StatefulWidget {
 class _BookingSummaryState extends State<BookingSummary>with SingleTickerProviderStateMixin {
 
   @override
-
+  int selectedIndex = -1;
 
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -225,23 +225,21 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
               ),
               Row(children: [
               Container(
-                width: 238,height: 40,
+                width: 220,height: 40,
                 decoration: BoxDecoration(
                   color: Color(0xfffafafa),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                margin: EdgeInsets.only(top: 30,left: 10),
+                margin: EdgeInsets.only(top: 30,left: 22),
                 child: TextFormField(
                   decoration: InputDecoration(
                       border: InputBorder.none,
                     disabledBorder: InputBorder.none,
-                    label: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('Enter Voucher Code',style: TextStyle(fontSize:14,fontFamily: 'Poppins' ,color: Color(0xff707070)),),
-                    )
+                      hintText:'Enter Voucher Code',
+                      hintStyle: TextStyle(fontSize:14,fontFamily: 'Poppins' ,color: Color(0xff707070)),)
                   ),
                 ),
-              ),
+
               Container(
                 margin: EdgeInsets.only(top: 30,),
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(4),color: Color(0xff313133)),
@@ -249,48 +247,62 @@ class _BookingSummaryState extends State<BookingSummary>with SingleTickerProvide
                 child: MaterialButton(onPressed: (){},
                       child: Center(child: Text('APPLY CODE',style: TextStyle(fontSize:14,fontFamily: 'Poppins' ,color:mainWhite),)),
                 ),
-              )
+              ),
               ],),
               Container(
-                margin: EdgeInsets.only(top: 15,left: 25,right: 25),
-                width: 333,height: 34,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Color(0xffF1F2F2),width: 1)
-                  ),
-                child: Row(children: [
-                 Container(
-                     margin: EdgeInsets.only(left: 16,),
-                     child: Image.asset('assets/credit.png',width: 22,height: 17,)),
-                  Container(
-                      margin: EdgeInsets.only(left: 9,right: 137),
-                      child: Text('Credit/Debit Card')),
-                  Container(
-                    width: 18,height: 18,
-                    decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
-                    child:Icon(Icons.check,color: mainWhite,size: 16,),
-                  ),
+                width:333,
+                height:99,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount:2,
+                  itemBuilder: (BuildContext context, int index) =>InkWell(
+                    onTap: () => setState(() => selectedIndex=index),
+                    child: Container(
+                      margin: EdgeInsets.only(top: 15,),
+                      width: 333,height: 34,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(color: Color(0xffF1F2F2),width: 1)
+                        ),
+                      child: Row(children: [
+                       Container(
+                           margin: EdgeInsets.only(left: 16,),
+                           child: Image.asset('assets/credit.png',width: 22,height: 17,)),
+                        Container(
+                            margin: EdgeInsets.only(left: 9,right: 137),
+                            child: Text('Credit/Debit Card')),
+                        Padding(
+                          padding: const EdgeInsets.all(0.0),
+                         child: (selectedIndex==index)? Container(
+                            width: 18,height: 18,
+                            decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
+                            child:Icon(Icons.check,color: mainWhite,size: 16,),
+                          ):null,
+                        ),
 
-                ],),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 15,left: 25,right: 25),
-                width: 333,height: 34,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Color(0xffF1F2F2),width: 1)
+                      ],),
+                    ),
+                  ),
                 ),
-                child: Row(children: [
-                  Container(
-                      margin: EdgeInsets.only(left: 16,),
-                      child: Image.asset('assets/wallet.png',height: 20,width: 20,)),
-                  Container(
-                      margin: EdgeInsets.only(left: 9,right: 137),
-                      child: Text('Pay with your wallet')),
-
-
-                ],),
               ),
+              // Container(
+              //   margin: EdgeInsets.only(top: 15,left: 25,right: 25),
+              //   width: 333,height: 34,
+              //   decoration: BoxDecoration(
+              //       borderRadius: BorderRadius.circular(4),
+              //       border: Border.all(color: Color(0xffF1F2F2),width: 1)
+              //   ),
+              //   child: Row(children: [
+              //     Container(
+              //         margin: EdgeInsets.only(left: 16,),
+              //         child: Image.asset('assets/wallet.png',height: 20,width: 20,)),
+              //     Container(
+              //         margin: EdgeInsets.only(left: 9,right: 137),
+              //         child: Text('Pay with your wallet')),
+              //
+              //
+              //   ],),
+              // ),
 
             ],),
           ),
