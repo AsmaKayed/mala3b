@@ -12,10 +12,11 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  bool isSwitchOn=false;
   @override
 
   Widget build(BuildContext context) {
-    bool  ?isSwitchOn=false;
+
     return Scaffold(
 
       backgroundColor: mainGrey,
@@ -50,15 +51,21 @@ class _SettingsState extends State<Settings> {
                 FlutterSwitch(
                   width: 35,height: 20,
                   value: isSwitchOn,
+                  showOnOff: false,
                   onToggle: (value) {
                     setState(() {
                       isSwitchOn = value;
                     });
                   },
-                  inactiveSwitchBorder: Border.all(color: mainGreen),
-                  inactiveColor: mainWhite,
+
+                  inactiveSwitchBorder: Border.all(color: Color(0xff707070)),
+                  activeSwitchBorder: Border.all(color: mainGreen),
+                  inactiveColor: Color(0xff707070),
                   toggleColor: mainGreen,
+                  inactiveToggleColor: mainGrey,
                   toggleSize: 15,
+                  activeColor: mainWhite,
+
 
                 ),
               ],

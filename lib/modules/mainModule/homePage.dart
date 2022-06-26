@@ -214,6 +214,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                             Padding(
                               padding: const EdgeInsets.only(bottom: 0,),
                               child: ListView.builder(
+                                physics: ScrollPhysics(),
                                   itemCount: 2,
                                   itemBuilder: (_,index)
                               {
@@ -306,6 +307,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                               }),
                             ),
                                 ListView.builder(
+                                    physics: ScrollPhysics(),
                                     itemCount: 2,
                                     itemBuilder: (_,index)
                                     {

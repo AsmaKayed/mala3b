@@ -232,7 +232,7 @@ class Booking extends StatelessWidget {
             ),
             Container(
               height: MediaQuery.of(context).size.height,
-              child: ListView.builder(itemCount:4,itemBuilder:(_,index) {
+              child: ListView.builder(itemCount:4,physics: ScrollPhysics(),itemBuilder:(_,index) {
                 return Padding(
                   padding: const EdgeInsets.only(top: 20, left: 39, right: 39),
                   child: Container(
