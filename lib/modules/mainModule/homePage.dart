@@ -60,51 +60,67 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
           listener: (BuildContext context,AppStates){},
           builder: (BuildContext context,AppStates)
           =>Scaffold(
-      backgroundColor: Color(0XFF52A650),
+      backgroundColor:mainWhite,
       body:
       SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 140,top: 48,),
-                    child: Image.asset('assets/malaeb.png',width:130 ,height: 27,),
+              Stack(
+                children:[
+                  Container(width:415,height:169,
+                  color:Color(0xff52A650),
                   ),
-                  SizedBox(width: 104,),
-                  Expanded(
-                    child: InkWell(
-                      onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Notifications()));},
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 48,right: 16),
-                        child: const Icon(Icons.notifications_none,color: Colors.white,),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            SizedBox(height: 31),
-              Padding(
-                padding: const EdgeInsets.only(right: 16,left: 16,),
-                child: Container(
-                height: 48,width: 382,
-                   decoration: BoxDecoration(
-                     borderRadius: BorderRadius.circular(4),
-                     color: Colors.green.shade200,
-                   ),
-                  child: TextFormField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
 
-                      prefixIcon: Icon(Icons.search),
-                      label: Text('Search'),
-                    ),
+
+                  Container(
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 140,top: 48,),
+                            child: Image.asset('assets/malaeb.png',width:130 ,height: 27,),
+                          ),
+                          SizedBox(width: 104,),
+                          Expanded(
+                            child: InkWell(
+                              onTap: (){  Navigator.push(context, MaterialPageRoute(builder: (context)=>Notifications()));},
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 48,right: 16),
+                                child: const Icon(Icons.notifications_none,color: Colors.white,),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 31),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 16,left: 16,),
+                        child: Container(
+                          height: 48,width: 382,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: Colors.green.shade200,
+                          ),
+                          child: TextFormField(
+                            controller: searchController,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+
+                              prefixIcon: Icon(Icons.search),
+                              label: Text('Search'),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+
+                ),]
               ),
+
 
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -115,7 +131,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                       padding: const EdgeInsets.only(top:15 ),
                       child: Container(color: Colors.white,
                       width: size.width,
-                        height:2000,
+                        height:size.height,
                       ),
                     ),
                     Column(
@@ -127,10 +143,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                             Container
 
                               (
-                                width: 700,
+                                width: 454,
                                 alignment: Alignment.topCenter,
-                                margin: EdgeInsets.only(top: 15),
-                                child: Image.asset('assets/edited.png',)),
+
+                                child: ClipRRect(child: Image.asset('assets/edited.png',fit: BoxFit.fill,width:454,height: 182,))),
 
                   ], options: CarouselOptions(
 
@@ -173,6 +189,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
                         alignment: Alignment.topLeft,
                         child: TabBar(
+                          padding: EdgeInsets.zero,
                           controller: tabController,
                             labelColor: Colors.black,
                             indicatorWeight: 4,
@@ -188,7 +205,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                       ),
 
                         Container(
-                          margin: const EdgeInsets.only(top: 10,),
+                          margin: const EdgeInsets.only(top: 0,),
                           height: MediaQuery.of(context).size.height,width: 382,
                           child: TabBarView(
                               controller: tabController,
@@ -209,43 +226,36 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                                       children: [
                                         Stack(
                                           children:[InkWell(
-
-                                            onTap:(){
-
-                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstVenuePage()));},
+                                          onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstVenuePage()));},
                                             child: Container(
                                               height: 144,
                                               width: 382,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(24),
-                                                image: DecorationImage(
-                                                  image: AssetImage('assets/slide.png'),
 
-                                                )
-                                              ),
+                                              child:ClipRRect(
+                                                  borderRadius: BorderRadius.circular(16),
+                                                  child: Image.asset('assets/venue.png',scale: 0.1,fit: BoxFit.fitWidth,)),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 107,left: 4,right: 3),
-                                            child: Opacity(
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 107,),
+                                              child: Opacity(
 
-                                              opacity: 0.6,
-                                              child: Stack(
-                                                children: [
-                                                 Container(
-                                                  width: 385,
-                                                  alignment: Alignment.bottomCenter,
-                                                  height: 37,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16),bottomRight:Radius.circular(16) ),
-                                                    color: Color(0XFF79B62D),
+                                                opacity: 0.8,
+                                                child: Stack(
+                                                  children: [
+                                                    Container(
+                                                      width: 388,
+                                                      height: 37,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16),bottomRight:Radius.circular(16) ),
+                                                        color: Color(0XFF79B62D),
 
-                                                  ),
-                                                ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.all(8.0),
-                                                    child: Text('Avaliable in 72 hrs',style: TextStyle(fontSize: 12,color: mainWhite,fontFamily: 'Poppins',),)
-                                                  )],),),),]),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.all(8.0),
+                                                      child: Text('Avaliable in 72 hrs',style: TextStyle(fontSize: 12,color: Colors.white,fontFamily: 'Poppins'),),
+                                                    )],),),),]),
                                         Row(
                                           children: [
                                           Padding(
@@ -302,30 +312,28 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
                                       return Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.stretch,
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                             Stack(
-                                                children:[Container(
+                                                children:[InkWell(
+                                                  onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>FirstVenuePage()));},child: Container(
                                                   height: 144,
                                                   width: 382,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(24),
-                                                      image: DecorationImage(
-                                                        image: AssetImage('assets/slide.png'),
 
-                                                      )
-                                                  ),
-                                                ),
+                                                    child:ClipRRect(
+                                                        borderRadius: BorderRadius.circular(16),
+                                                        child: Image.asset('assets/venue.png',scale: 0.1,fit: BoxFit.fitWidth,)),
+                                                ),),
                                                   Padding(
-                                                    padding: const EdgeInsets.only(top: 107,left: 4,right: 3),
+                                                    padding: const EdgeInsets.only(top: 107,),
                                                     child: Opacity(
 
-                                                      opacity: 0.6,
+                                                      opacity: 0.8,
                                                       child: Stack(
                                                         children: [
                                                           Container(
-                                                            width: 385,
-                                                            alignment: Alignment.bottomCenter,
+                                                            width: 388,
                                                             height: 37,
                                                             decoration: BoxDecoration(
                                                               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16),bottomRight:Radius.circular(16) ),

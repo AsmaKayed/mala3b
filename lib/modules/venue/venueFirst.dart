@@ -263,10 +263,10 @@ List<String> duration=[
 
 
              Padding(
-                     padding: const EdgeInsets.only(right: 130,left: 20,top:11,bottom: 34),
+                     padding: const EdgeInsets.only(right: 125,left: 20,top:11,bottom: 34),
                      child: Container(
                        width: 270,
-                       height: 68,
+                       height: 65,
                        child: ListView.builder(
                            padding: EdgeInsets.zero,
                            itemCount: 3,
@@ -274,25 +274,37 @@ List<String> duration=[
                      itemBuilder: (BuildContext context, int index)
                        =>InkWell(
                          onTap: ()=>setState(() => secondSelectedIndex=index),
-                         child: Container(
-                           height: 73,width: 82,
-                           margin: const EdgeInsets.only(right:8),
-                           decoration: BoxDecoration(border: Border.all(width:2,color: (secondSelectedIndex==index)?mainGreen:mainGrey),borderRadius: BorderRadius.circular(4)),
-                           child: Center(
-                             child: Column(
-                               mainAxisAlignment: MainAxisAlignment.center,
-                               crossAxisAlignment: CrossAxisAlignment.center,
-                               children: [
-                                 Padding(
-                                   padding: const EdgeInsets.all(0),
-                                   child: Image.asset('assets/secondfootball.png',color:(secondSelectedIndex==index)?null:Color(0xffB4BFC5),width: 27,height: 27,),
-                                 ),
-                                 Center(child: Padding(
-                                   padding: const EdgeInsets.only(top: 5),
-                                   child: Text('Football',style: TextStyle(fontSize: 13,color:(secondSelectedIndex==index)?null:Color(0xffB4BFC5)),),
-                                 )),
-                               ],),
-                           ),),
+                         child: Stack(
+                           children: [Container(
+                             height: 73,width: 82,
+                             margin: const EdgeInsets.only(right:8),
+                             decoration: BoxDecoration(border: Border.all(width:2,color: (secondSelectedIndex==index)?mainGreen:mainGrey),borderRadius: BorderRadius.circular(4)),
+                             child: Center(
+                               child: Column(
+                                 mainAxisAlignment: MainAxisAlignment.center,
+                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                 children: [
+                                   Padding(
+                                     padding: const EdgeInsets.all(0),
+                                     child: Image.asset('assets/secondfootball.png',color:(secondSelectedIndex==index)?null:Color(0xffB4BFC5),width: 27,height: 27,),
+                                   ),
+                                   Center(child: Padding(
+                                     padding: const EdgeInsets.only(top: 5),
+                                     child: Text('Football',style: TextStyle(fontSize: 13,color:(secondSelectedIndex==index)?null:Color(0xffB4BFC5)),),
+                                   )),
+                                 ],),
+                             ),),
+                             Padding(
+                               padding: const EdgeInsets.only(left:68,top: 0, ),
+                               child:  (secondSelectedIndex==index)?Container(
+
+                                 width: 18,height: 18,
+                                 decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
+                                 child:Icon(Icons.check,color: mainWhite,size: 16,),
+                               ):null,),
+
+                           ],
+                         ),
                        )),
                      ),
                    ),
