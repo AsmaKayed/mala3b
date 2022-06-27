@@ -1,4 +1,5 @@
 
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +23,22 @@ class Account extends StatefulWidget {
   @override
   State<Account> createState() => _AccountState();
 }
+final ImagePicker _picker=ImagePicker();
+
 
 class _AccountState extends State<Account> {
+  File? pickedImage;
 
+  fetchImage()async{
+    final XFile? image=await _picker.pickImage(source: ImageSource.gallery);
+
+    if(image==null){
+      return;
+    }
+    setState((){
+      pickedImage=File(image.path);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -62,20 +76,28 @@ class _AccountState extends State<Account> {
 
               Stack(children: [Padding(
                 padding: const EdgeInsets.all(6.0),
-                child: Container(
-                height: 112,width: 112,
-             decoration: BoxDecoration(shape: BoxShape.circle,border: Border.all(color: mainGreen,width: 1)),
-
+                child: CircleAvatar(
+                  radius: 53,
+                  backgroundColor: mainGreen,
+                  child: CircleAvatar(
+                    radius: 52,
+                    backgroundColor: mainWhite,
+                    backgroundImage:  pickedImage==null?null:Image.file(pickedImage!,).image,),
                 ),
 
               ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 90,top: 90),
-                  child: Container(
-                    child: Center(child: Icon(Icons.edit_outlined,color: mainWhite,size: 15,)),
-                    height: 24,width: 24,
-                    decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
+                  padding: const EdgeInsets.only(left: 90,top: 80),
+                  child: InkWell(
+                    onTap: (){
+                      fetchImage();
+                    },
+                    child: Container(
+                      child: Center(child: Icon(Icons.edit_outlined,color: mainWhite,size: 15,)),
+                      height: 24,width: 24,
+                      decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
 
+                    ),
                   ),
                 ),
 
