@@ -20,6 +20,7 @@ Widget defaultTextField
   Function()? onsubmit,
   Function()? onChange,
   Function()? onTap,
+  TextInputType? type,
   bool isPassword = false,
   required String? Function(String?)? validate,
   required String? label,

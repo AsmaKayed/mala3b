@@ -17,12 +17,14 @@ import 'package:untitled/modules/mainModule/homePage.dart';
 import 'package:untitled/modules/mainModule/profile.dart';
 import 'package:untitled/modules/venue/venueFirst.dart';
 import 'package:untitled/network/local/cacheHelper.dart';
+import 'package:untitled/network/remote/dio_helper.dart';
 import 'layouts/splash.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   CacheHelper.init();
   await CacheHelper.init();
+  DioHelper.init();
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,
