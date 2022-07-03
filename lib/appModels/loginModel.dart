@@ -1,5 +1,7 @@
 
 
+import 'package:untitled/modules/login/login.dart';
+
 class LoginModel{
   String? status;
   int ? otp;
@@ -19,4 +21,5 @@ class OTPModel{
     status =json['status'];
     mobile =json['mobile'];
   }
+
 }

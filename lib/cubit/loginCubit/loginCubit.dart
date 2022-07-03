@@ -11,10 +11,10 @@ class LoginCubit extends Cubit<LoginStates> {
    LoginModel? loginModel ;
   OTPModel? otpModel;
 
- void userLogin ({required String mobile}){
+ dynamic userLogin ({required String mobile}){
    emit(LoginLoadingState());
 
-   DioHelper.postData(data: {'mobile':mobile}, url:'registerStepOnce').then((value) {
+   DioHelper.postData(data: {'mobile':mobile}, url:(loginModel?.otp==null)?'sendLoginOtp':'registerStepOnce').then((value) {
    loginModel=LoginModel.fromJson(value.data);
    print(loginModel!.otp);
 
@@ -22,16 +22,35 @@ class LoginCubit extends Cubit<LoginStates> {
     print(error);
      emit(LoginErrorState(error.toString()));
    });
+
  }
-  void userOTP ({required String otp}){
+
+  dynamic userOTP ({required String otp}){
     emit(OTPLoadingState());
 
-    DioHelper.postData(data: {'otp':otp}, url:'registerOTPVerify').then((value) {
+   DioHelper.postData(data: {'otp':otp}, url:'registerOTPVerify').then((value) {
       otpModel=OTPModel.fromJson(value.data);
-      print(otpModel!.mobile);
-    emit(OTPSuccessState());}).catchError((error){
+
+    emit(OTPSuccessState(otpModel!));
+    }).catchError((error){
       print(error);
       emit(OTPErrorState(error.toString()));
+    });
+
+  }
+
+
+  void userRegister({required String name,required String email,required var mobile }) {
+    emit(RegisterLoadingState());
+
+    DioHelper.postData(data: {'name':name,'email':email,'mobile': mobile,}, url: 'registerLast').then((
+        value) {
+      print(value.data);
+
+      emit(RegisterSuccessState());
+    }).catchError((error) {
+      print(error);
+      emit(RegisterErrorState(error.toString()));
     });
   }
 

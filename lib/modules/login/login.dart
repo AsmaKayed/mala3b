@@ -20,7 +20,7 @@ class Login extends StatefulWidget {
   State<Login> createState() => _LoginState();
 }
  final TextEditingController mobileNumberController=TextEditingController();
-OTPModel? otpModel;
+
 class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var deviceData=MediaQuery.of(context);

@@ -25,6 +25,7 @@ void main() async{
   CacheHelper.init();
   await CacheHelper.init();
   DioHelper.init();
+
   runApp(
       MaterialApp(
           debugShowCheckedModeBanner: false,

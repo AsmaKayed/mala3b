@@ -65,7 +65,7 @@
                              Container(
                                margin: const EdgeInsets.only(left:24,  ),
                                child: Row( children:[defaultBottom(imageText:"assets/arrow.png",function: (){
-                                 if (Login.formKey.currentState!.validate()){
+                                 if (OTP.formKey.currentState!.validate()){
                                    LoginCubit.get(context).userOTP(otp: otpController.text);
                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
                                  }
