@@ -9,12 +9,33 @@ class LoginInitialState extends LoginStates{}
 
 class LoginLoadingState extends LoginStates{}
 
-class LoginSuccessState extends LoginStates{}
+class LoginSuccessState extends LoginStates{
+  final LoginModel loginModel;
+  LoginSuccessState(this.loginModel);
+
+}
 
 class LoginErrorState extends LoginStates{
 
   final String error;
   LoginErrorState(this.error);}
+
+abstract class LoginOTPStates {}
+
+class LoginOTPInitialState extends LoginStates{}
+
+class LoginOTPLoadingState extends LoginStates{}
+
+class LoginOTPSuccessState extends LoginStates{
+  final LoginOTPModel loginOTPModel;
+  LoginOTPSuccessState(this.loginOTPModel);
+
+}
+
+class LoginOTPErrorState extends LoginStates{
+
+  final String error;
+  LoginOTPErrorState(this.error);}
 
 
   class OTPInitialState extends LoginStates{}

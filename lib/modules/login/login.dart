@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:untitled/reausable%20components/reusable%20components.dart';
 import '../../appModels/loginModel.dart';
 import '../../cubit/cubit.dart';
 import '../../cubit/states.dart';
+import '../../network/local/cacheHelper.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -24,16 +27,42 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var deviceData=MediaQuery.of(context);
-
+LoginModel? loginModel;
 
 
     return BlocProvider(
         create: (BuildContext context)=>LoginCubit(),
 
         child: BlocConsumer<LoginCubit,LoginStates>(
-        listener: (BuildContext context,AppStates){},
-    builder: (BuildContext context,AppStates)
-          => Scaffold(
+        listener: (BuildContext context,LoginStates){
+          // if (LoginStates is LoginSuccessState)
+          // {
+      //       if (LoginStates.loginModel.status != null)
+      //       {
+      //         print(  LoginCubit.get(context).loginModel?.otp);
+      // }}
+          //
+          //   } else
+          //   {
+          //     print(state.loginModel.status);
+          //   }
+          // }else if(state is LoginOTPSuccessState){
+          //   if (state.loginOTPModel.status != null)
+          //   {
+          //     print(loginModel?.otp);
+          //     CacheHelper.saveData(key: 'mobile', value: state.loginOTPModel.otp);
+          //
+          //   } else
+          //   {
+          //     print(state.loginOTPModel.status);
+          //   }
+          //
+          // }
+
+        },
+           builder: (BuildContext context,LoginStates)
+           {
+             return Scaffold(
             body:Stack(
              children:[
              Container(
@@ -102,11 +131,29 @@ class _LoginState extends State<Login> {
                         child: Row( children:[
                           ConditionalBuilder(condition: State is! LoginLoadingState, builder: (context)=>  defaultBottom(imageText:"assets/arrow.png",
                           function: (){
+
                             if (Login.formKey.currentState!.validate()){
-                              LoginCubit.get(context).userLogin(mobile: mobileNumberController.text);
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>OTP()));
-                           }
-                          }, text:'Sign in', width: 366 ), fallback: (context)=> Center(child: CircularProgressIndicator()),),
+                                LoginCubit.get(context).userLogin(mobile: mobileNumberController.text);
+
+
+                                  // if(  LoginCubit.get(context).loginModel?.errors?.mobile.toString()=="[The mobile has already been taken.]"){
+                                  //   LoginCubit.get(context).userAlreadyLogin(mobile: mobileNumberController.text);
+                                  //   print('55555');
+                                  //
+                                  //   Navigator.push(context, MaterialPageRoute(builder: (context)=>OTP()));}
+                                  //
+                                  // else{
+                                  //   Navigator.push(context, MaterialPageRoute(builder: (context)=>OTP()));
+                                  //   print('6');
+                                  //
+                                  //
+                                  // }
+                              }
+
+
+                            }
+
+                          , text:'Sign in', width: 366 ), fallback: (context)=> Center(child: CircularProgressIndicator()),),
 
 
                     ],),
@@ -121,7 +168,7 @@ class _LoginState extends State<Login> {
 
 
 
-          ]))));
+          ]));}));
 
 
   }

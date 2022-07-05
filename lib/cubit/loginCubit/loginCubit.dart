@@ -10,22 +10,33 @@ class LoginCubit extends Cubit<LoginStates> {
  static LoginCubit get(context)=>BlocProvider.of(context);
    LoginModel? loginModel ;
   OTPModel? otpModel;
+  LoginOTPModel ?loginOTPModel;
 
- dynamic userLogin ({required String mobile}){
+ void userLogin ({required String mobile}){
    emit(LoginLoadingState());
 
-   DioHelper.postData(data: {'mobile':mobile}, url:(loginModel?.otp==null)?'sendLoginOtp':'registerStepOnce').then((value) {
+   DioHelper.postData(data: {'mobile':mobile}, url:'registerStepOnce').then((value) {
    loginModel=LoginModel.fromJson(value.data);
-   print(loginModel!.otp);
-
-   emit(LoginSuccessState());}).catchError((error){
-    print(error);
+   print(value.data);
+   emit(LoginSuccessState(loginModel!));}).catchError((error){
      emit(LoginErrorState(error.toString()));
    });
 
  }
+  void userAlreadyLogin ({required String mobile}){
+    emit(LoginOTPLoadingState());
 
-  dynamic userOTP ({required String otp}){
+    DioHelper.postData(data: {'mobile':mobile}, url:'sendLoginOtp').then((value) {
+      loginOTPModel=LoginOTPModel.fromJson(value.data);
+        print(value.data);
+
+      emit(LoginOTPSuccessState(loginOTPModel!));}).catchError((error){
+
+      emit(LoginOTPErrorState(error.toString()));
+    });
+
+  }
+  void userOTP ({required String otp}){
     emit(OTPLoadingState());
 
    DioHelper.postData(data: {'otp':otp}, url:'registerOTPVerify').then((value) {
