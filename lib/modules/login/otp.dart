@@ -2,6 +2,7 @@
 
           import 'package:flutter/material.dart';
           import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:untitled/layouts/try.dart';
           import 'package:untitled/modules/login/register.dart';
 
           import '../../cubit/loginCubit/loginCubit.dart';
@@ -24,7 +25,19 @@
                         create: (BuildContext context)=>LoginCubit(),
 
                         child: BlocConsumer<LoginCubit,LoginStates>(
-                        listener: (BuildContext context,LoginStates){},
+                        listener: (BuildContext context,LoginStates){
+                          if (LoginStates is FirstLoginSuccessState) {
+                            if (LoginCubit.get(context).loginModel?.token==null) {
+                              print(5);
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
+                            } else {
+                              print(6);
+                              print(LoginCubit.get(context).loginModel?.token);
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeLayout()));
+
+                            }
+                          }
+                          },
                     builder: (BuildContext context,LoginStates)
                     =>Scaffold(
                       body: Stack(
@@ -66,9 +79,11 @@
                                margin: const EdgeInsets.only(left:24,  ),
                                child: Row( children:[defaultBottom(imageText:"assets/arrow.png",function: (){
                                  if (OTP.formKey.currentState!.validate()){
-                                   LoginCubit.get(context).userOTP(otp: otpController.text);
-                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()));
-                                 }
+
+                                     LoginCubit.get(context).login(otp: otpController.text,mobile: mobileNumberController.text);
+
+                                   }
+
                                  }
                                   , text:'Complete sign up', width: 366 ),
 

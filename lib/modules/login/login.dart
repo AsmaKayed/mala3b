@@ -27,7 +27,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     var deviceData=MediaQuery.of(context);
-LoginModel? loginModel;
+RegisterFirstModel? loginModel;
 
 
     return BlocProvider(
@@ -133,8 +133,8 @@ LoginModel? loginModel;
                           function: (){
 
                             if (Login.formKey.currentState!.validate()){
-                                LoginCubit.get(context).userLogin(mobile: mobileNumberController.text);
-
+                                LoginCubit.get(context).userFirstRegister(mobile: mobileNumberController.text);
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>OTP()));
 
                                   // if(  LoginCubit.get(context).loginModel?.errors?.mobile.toString()=="[The mobile has already been taken.]"){
                                   //   LoginCubit.get(context).userAlreadyLogin(mobile: mobileNumberController.text);

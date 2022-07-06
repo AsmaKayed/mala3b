@@ -2,14 +2,14 @@
 
 import 'package:untitled/modules/login/login.dart';
 
-class LoginModel{
+class RegisterFirstModel{
   String? status;
   int ? otp;
   String ?message;
   Errors? errors;
 
 
-  LoginModel.fromJson(Map<String,dynamic> json){
+  RegisterFirstModel.fromJson(Map<String,dynamic> json){
     status =json['status'];
     otp =json['otp'];
     message =json['message'];
@@ -56,6 +56,18 @@ class OTPModel{
   OTPModel.fromJson(dynamic json){
     status =json['status'];
     mobile =json['mobile'];
+  }
+
+}
+
+
+class LoginModel{
+  String? status;
+  String ? token;
+
+  LoginModel.fromJson(dynamic json){
+    status =json['status'];
+    token =json['token'];
   }
 
 }

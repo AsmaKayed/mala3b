@@ -10,7 +10,7 @@ class LoginInitialState extends LoginStates{}
 class LoginLoadingState extends LoginStates{}
 
 class LoginSuccessState extends LoginStates{
-  final LoginModel loginModel;
+  final RegisterFirstModel loginModel;
   LoginSuccessState(this.loginModel);
 
 }
@@ -64,3 +64,14 @@ class RegisterErrorState extends LoginStates{
 
   final String error;
   RegisterErrorState(this.error);}
+
+class FirstLoginSuccessState extends LoginStates{
+    final LoginModel loginModel;
+  FirstLoginSuccessState( this.loginModel);
+
+}
+
+class FirstLoginErrorState extends LoginStates{
+
+  final String error;
+  FirstLoginErrorState(this.error);}
