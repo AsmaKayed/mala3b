@@ -19,19 +19,19 @@ class AppCubit extends Cubit<AppStates>
   static AppCubit get( context) => BlocProvider.of(context);
 
   int currentIndex=0;
-  int counter=1;
-  int secondcounter=1;
-  int thirdcounter=1;
+  int counter=0;
+  int secondcounter=0;
+  int thirdcounter=0;
 
   void firstMinus(){
 
-    counter--;
+    (counter>=1)?counter--:null;
 
     emit(FirstMinusState());
   }
   void thirdMinus(){
 
-    thirdcounter--;
+    (thirdcounter>=1)?thirdcounter--:null;
 
     emit(ThirdMinusState());
   }
@@ -44,7 +44,7 @@ class AppCubit extends Cubit<AppStates>
 
   void secondMinus(){
 
-    secondcounter--;
+    (secondcounter>=1)?secondcounter--:null;
 
     emit(SecondMinusState());
   }

@@ -71,6 +71,10 @@ List<String> duration=[
 
   );
   int selectedIndex = -1;
+  int selectedIndexDate = -1;
+  int secondSelectedIndex = -1;
+  int thirdSelectedIndex = -1;
+  int forthSelectedIndex = -1;
   @override
   Widget build(BuildContext context) {
 
@@ -124,7 +128,7 @@ List<String> duration=[
              child: Column(children: [
                Row(children: [
                  const Padding(
-                   padding: EdgeInsets.only(left: 24,top: 46),
+                   padding: EdgeInsets.only(left: 20,top: 46),
                    child: Text('WESTBAY , Doha, Qatar',style: TextStyle(fontSize: 12,fontFamily: 'Poppins',fontWeight: FontWeight.w100),),
                  ),
 
@@ -135,7 +139,8 @@ List<String> duration=[
 
                ],),
                Container(
-                 padding: const EdgeInsets.only(right:299,top:42,left: 20),
+                 alignment: Alignment.topLeft,
+                 padding: const EdgeInsets.only(left: 20),
                  child: Text('Select Pitch',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
                ),
                SingleChildScrollView(
@@ -174,7 +179,7 @@ List<String> duration=[
                                                child: Text(
                                                  '5x5 Pitch',
                                                  style: TextStyle(
-                                                     color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                     color: (selectedIndex==index)? null:Color(0xffB4BFC5),
                                                      fontSize: 15),),
                                              ),
 
@@ -195,7 +200,7 @@ List<String> duration=[
                                                                    child: Text(
                                                                      'Football',
                                                                      style: TextStyle(
-                                                                         color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                                         color: (selectedIndex==index)? null:Color(0xffB4BFC5),
                                                                          fontSize: 13),))),
 
                                                            Container(
@@ -207,7 +212,7 @@ List<String> duration=[
                                                                    child: Text(
                                                                      'Volleyball',
                                                                      style: TextStyle(
-                                                                         color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                                         color: (selectedIndex==index)? null:Color(0xffB4BFC5),
                                                                          fontSize: 13),))),
 
                                                            Container(
@@ -219,7 +224,7 @@ List<String> duration=[
                                                                    child: Text(
                                                                      'Hockey',
                                                                      style: TextStyle(
-                                                                       color: AppCubit.get(context).venueFirst? null:Color(0xffB4BFC5),
+                                                                       color: (selectedIndex==index)? null:Color(0xffB4BFC5),
                                                                          fontSize: 13),))),
 
                                                          ],
@@ -241,12 +246,12 @@ List<String> duration=[
                            ),
                              Padding(
                                padding: const EdgeInsets.only(left:234,top: 10, ),
-                               child: AppCubit.get(context).venueFirst?Container(
+                               child:  (selectedIndex==index)?Container(
 
                                  width: 18,height: 18,
                                  decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
                                  child:Icon(Icons.check,color: mainWhite,size: 16,),
-                               ):null,)
+                               ):null,),
                            ]
                        );}
                      ),
@@ -255,127 +260,6 @@ List<String> duration=[
               ]
                  ),
                ),
-
-
-                  // SingleChildScrollView(
-                  //    scrollDirection: Axis.horizontal,
-                  //
-                  //    child: Padding(
-                  //      padding: const EdgeInsets.only(bottom: 30),
-                  //      child: Container(
-                  //        width: 510,
-                  //        height: 79,
-                  //           child: StaggeredGridView.countBuilder(
-                  //               scrollDirection: Axis.vertical,
-                  //               staggeredTileBuilder: (int index)=>StaggeredTile.count(1,0.4),
-                  //             crossAxisCount: 2,
-                  //
-                  //               mainAxisSpacing: 8,
-                  //               itemCount: pitch!.length,
-                  //               crossAxisSpacing: 0,
-                  //               itemBuilder: (BuildContext context, int index,) {
-                  //                 final _isSelected = _selectedIndexs.contains(
-                  //                     index);
-                  //                 PitchModel pitch;
-                  //                 return Padding(
-                  //                   padding: const EdgeInsets.only(
-                  //                       left: 20, top: 15),
-                  //                   child:
-                  //                   InkWell(
-                  //                     onTap: () {
-                  //                       AppCubit.get(context).changeStyle(index);
-                  //                     },
-                  //                     child: Container(
-                  //                       width: 200, height: 50,
-                  //                       decoration: BoxDecoration(
-                  //                         border: Border.all(
-                  //                             width: 2, color:AppCubit.get(context).isClick ?Colors.red:Colors.blue,),
-                  //                         borderRadius: BorderRadius.circular(
-                  //                             4),),
-                  //                       child: Card(
-                  //                         elevation: 0,
-                  //                         child: Container(
-                  //                             child: Column(
-                  //                               children: [
-                  //                                 Padding(
-                  //                                   padding: const EdgeInsets
-                  //                                       .only(left: 8,
-                  //                                       right: 148,
-                  //                                       top: 8,
-                  //                                       bottom: 8),
-                  //                                   child: Text(
-                  //                                     'ggggggg',
-                  //                                     style: TextStyle(
-                  //                                         fontSize: 15),),
-                  //                                 ),
-                  //                                 Row(
-                  //                                   children: [
-                  //                                     Container(
-                  //                                       child: Column(
-                  //                                         children: [
-                  //                                           Row(
-                  //
-                  //                                             children: [
-                  //                                               Padding(
-                  //                                                 padding: const EdgeInsets
-                  //                                                     .only(
-                  //                                                     left: 8,
-                  //                                                     right: 2),
-                  //                                                 child: Container(
-                  //                                                     width: 67,
-                  //                                                     height: 26,
-                  //                                                     color: mainGrey,
-                  //                                                     child: Center(
-                  //                                                         child: Text(
-                  //                                                           'Football',
-                  //                                                           style: TextStyle(
-                  //                                                               fontSize: 15),))),
-                  //                                               ),
-                  //                                               Container(
-                  //                                                   margin: const EdgeInsets
-                  //                                                       .only(
-                  //                                                       right: 2),
-                  //                                                   width: 67,
-                  //                                                   height: 26,
-                  //                                                   color: mainGrey,
-                  //                                                   child: Center(
-                  //                                                       child: Text(
-                  //                                                         'Volleyball',
-                  //                                                         style: TextStyle(
-                  //                                                             fontSize: 15),))),
-                  //
-                  //                                               Container(
-                  //
-                  //                                                   width: 67,
-                  //                                                   height: 26,
-                  //                                                   color: mainGrey,
-                  //                                                   child: Center(
-                  //                                                       child: Text(
-                  //                                                         'Hockey',
-                  //                                                         style: TextStyle(
-                  //                                                             fontSize: 15),))),
-                  //
-                  //                                             ],
-                  //
-                  //                                           ),
-                  //
-                  //
-                  //                                         ],
-                  //                                       ),
-                  //                                     )
-                  //                                   ],),
-                  //                               ],
-                  //                             )
-                  //                         ),
-                  //                       ),
-                  //                     ),
-                  //                   ),
-                  //                 );
-                  //               }),
-                  //
-                  //          ),
-                  //    ),
-                  //  ),
 
 
              Padding(
@@ -388,30 +272,34 @@ List<String> duration=[
                            itemCount: 3,
                      scrollDirection: Axis.horizontal,
                      itemBuilder: (BuildContext context, int index)
-                       =>Container(
-                         height: 73,width: 82,
-                         margin: const EdgeInsets.only(right:8),
-                         decoration: BoxDecoration(border: Border.all(width:2,color: mainGreen),borderRadius: BorderRadius.circular(4)),
-                         child: Center(
-                           child: Column(
-                             mainAxisAlignment: MainAxisAlignment.center,
-                             crossAxisAlignment: CrossAxisAlignment.center,
-                             children: [
-                               Padding(
-                                 padding: const EdgeInsets.all(0),
-                                 child: Image.asset('assets/secondfootball.png',width: 27,height: 27,),
-                               ),
-                               Center(child: Padding(
-                                 padding: const EdgeInsets.only(top: 5),
-                                 child: Text('Football',style: TextStyle(fontSize: 13),),
-                               )),
-                             ],),
-                         ),)),
+                       =>InkWell(
+                         onTap: ()=>setState(() => secondSelectedIndex=index),
+                         child: Container(
+                           height: 73,width: 82,
+                           margin: const EdgeInsets.only(right:8),
+                           decoration: BoxDecoration(border: Border.all(width:2,color: (secondSelectedIndex==index)?mainGreen:mainGrey),borderRadius: BorderRadius.circular(4)),
+                           child: Center(
+                             child: Column(
+                               mainAxisAlignment: MainAxisAlignment.center,
+                               crossAxisAlignment: CrossAxisAlignment.center,
+                               children: [
+                                 Padding(
+                                   padding: const EdgeInsets.all(0),
+                                   child: Image.asset('assets/secondfootball.png',color:(secondSelectedIndex==index)?null:Color(0xffB4BFC5),width: 27,height: 27,),
+                                 ),
+                                 Center(child: Padding(
+                                   padding: const EdgeInsets.only(top: 5),
+                                   child: Text('Football',style: TextStyle(fontSize: 13,color:(secondSelectedIndex==index)?null:Color(0xffB4BFC5)),),
+                                 )),
+                               ],),
+                           ),),
+                       )),
                      ),
                    ),
 
                Container(
-                 padding: const EdgeInsets.only(right:301,left:20),
+                 alignment: Alignment.topLeft,
+                 padding: const EdgeInsets.only(left: 20),
                  child: Text('Select Date',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
                ),
                Padding(
@@ -465,7 +353,7 @@ List<String> duration=[
                    ]),
                ),
                Container(
-                margin:EdgeInsets.only(top:24,left:20,right: 20,bottom: 20),
+                margin:EdgeInsets.only(top:20,left:20,right: 20,bottom: 20),
                  width: 375,
                  height: 56,
                  child: ListView.builder(
@@ -484,48 +372,61 @@ List<String> duration=[
                                currentDateTime = currentMonthList[index];
                              });
                            },
-                           child: Container(
-                             width: 56,
-                             height: 56,
-                             decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.circular(8),
-                                 color: (currentMonthList[index].day != currentDateTime.day)? mainWhite: mainWhite,
-                                 border: Border.all(width: 2,color: (currentMonthList[index].day!= currentDateTime.day)? mainGrey: mainGreen,)
+                           child: Stack(
+                             children:[ Container(
+                               width: 56,
+                               height: 56,
+                               decoration: BoxDecoration(
+                                   borderRadius: BorderRadius.circular(8),
+                                   color: (currentMonthList[index].day != currentDateTime.day)? mainWhite: mainWhite,
+                                   border: Border.all(width: 2,color: (currentMonthList[index].day!= currentDateTime.day)? mainGrey: mainGreen,)
 
-                             ),
+                               ),
 
 
-                             child: Center(
-                               child: Column(
-                                 mainAxisAlignment: MainAxisAlignment.center,
-                                 children: <Widget>[
-                                   Text(
-                                     currentMonthList[index].day.toString(),
-                                     style: TextStyle(
-                                         fontSize: 17,
-                                         fontFamily: 'Poppins',
-                                         color:
-                                         (currentMonthList[index].day != currentDateTime.day)
-                                             ? Color(0xff707070)
-                                             : Colors.black),
-                                   ),
-                                   Text(
-                                     date_util.DateUtils
-                                         .weekdays[currentMonthList[index].weekday - 1],
-                                     style: TextStyle(
-                                         fontSize: 9,
-                                         fontFamily: 'Poppins',
-                                         color:
-                                         (currentMonthList[index].day != currentDateTime.day)
-                                             ? Color(0xff707070)
-                                             : Colors.black),
-                                   )],),),),
+                               child: Center(
+                                 child: Column(
+                                   mainAxisAlignment: MainAxisAlignment.center,
+                                   children: <Widget>[
+                                     Text(
+                                       currentMonthList[index].day.toString(),
+                                       style: TextStyle(
+                                           fontSize: 17,
+                                           fontFamily: 'Poppins',
+                                           color:
+                                           (currentMonthList[index].day != currentDateTime.day)
+                                               ? Color(0xff707070)
+                                               : Colors.black),
+                                     ),
+                                     Text(
+                                       date_util.DateUtils
+                                           .weekdays[currentMonthList[index].weekday - 1],
+                                       style: TextStyle(
+                                           fontSize: 9,
+                                           fontFamily: 'Poppins',
+                                           color:
+                                           (currentMonthList[index].day != currentDateTime.day)
+                                               ? Color(0xff707070)
+                                               : Colors.black),
+                                     )],),),),
+
+                               Padding(
+                                 padding: const EdgeInsets.all(0.0),
+                                 child:  (currentMonthList[index].day != currentDateTime.day)?null:Container(
+                                     margin: const EdgeInsets.only(left:42,bottom: 40, ),
+                             width: 18,height: 18,
+                             decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
+                             child:Icon(Icons.check,color: mainWhite,size: 16,),
+                           ),
+                               ),
+                          ] ),
                          ));},
                  ),
                ),
 
                Container(
-                 padding: const EdgeInsets.only(right:324,top:33,left: 20),
+                 alignment: Alignment.topLeft,
+                 padding: const EdgeInsets.only(left: 20),
                  child: Text('Duration',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
                ),
 
@@ -540,46 +441,53 @@ List<String> duration=[
                    itemBuilder: (BuildContext context, int index)=>
                        Padding(
                          padding: const EdgeInsets.only(right:10),
-                         child: Container(
-                           width:102,height:40,
-                           decoration :BoxDecoration(
-                             border:Border.all(width:1,color: mainGreen),
-                             borderRadius: BorderRadius.circular(4),
-                           ),
-                           child:Row(
-                             children: [
-                               Padding(
-                                 padding: const EdgeInsets.all(8.0),
-                                 child: Image.asset('assets/clock.png'),
-                               ),
-                               Padding(
-                                 padding: const EdgeInsets.only(top:5.0),
-                                 child: Column(
-                                   mainAxisAlignment: MainAxisAlignment.start,
-                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   children: [
-                                     Text(duration[index],overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
-                                     'Poppins',fontSize: 12,color: Color(0xff1D1D1B)),),
-                                     Text('minutes',overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
-                                     'Poppins',fontSize: 12,color: Color(0xff1D1D1B)),),
-                                   ],
+                         child: InkWell(
+                           onTap: ()=>setState(()=>thirdSelectedIndex=index),
+                           child: Container(
+                             width:102,height:40,
+                             decoration :BoxDecoration(
+                               border:Border.all(width:1,color: (thirdSelectedIndex==index)?mainGreen:mainGrey ),
+                               borderRadius: BorderRadius.circular(4),
+                             ),
+                             child:Row(
+                               children: [
+                                 Padding(
+                                   padding: const EdgeInsets.all(8.0),
+                                   child: Image.asset('assets/clock.png',color: (thirdSelectedIndex==index)? null:Color(0xffB4BFC5),),
                                  ),
-                               ),
-                             ],
-                           ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(top:5.0),
+                                   child: Column(
+                                     mainAxisAlignment: MainAxisAlignment.start,
+                                     crossAxisAlignment: CrossAxisAlignment.start,
+                                     children: [
+                                       Text(duration[index],overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
+                                       'Poppins',fontSize: 12,color: (thirdSelectedIndex==index)? null:Color(0xffB4BFC5),),),
+                                       Text('minutes',overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
+                                       'Poppins',fontSize: 12,color:(thirdSelectedIndex==index)? null:Color(0xffB4BFC5),),),
+                                     ],
+                                   ),
+                                 ),
+                               ],
+                             ),
 
+                           ),
                          ),
                        ),
                  ),
-               ),   Container(
-                 padding: const EdgeInsets.only(right:311,top:33,left: 20),
+               ),
+               SizedBox(height: 30,),
+               Container(
+                 alignment: Alignment.topLeft,
+                 padding: const EdgeInsets.only(left: 20),
                  child: Text('Time Slots',overflow: TextOverflow.ellipsis,style: TextStyle(fontSize: 16,fontFamily: 'Poppins'),),
                ),
+               SizedBox(height: 9,),
 
                Container(
                  height: 40,
-                 width:256,
-                 margin:EdgeInsets.only(left:20,top:16,right: 135),
+                 width:270,
+                 margin:EdgeInsets.only(left:20,right: 120),
                  child: ListView.builder(
                    padding: EdgeInsets.zero,
                    scrollDirection: Axis.horizontal,
@@ -587,27 +495,41 @@ List<String> duration=[
                    itemBuilder: (BuildContext context, int index)=>
                        Padding(
                          padding: const EdgeInsets.only(right:10),
-                         child: Container(
-                           width:77,height:40,
-                           decoration :BoxDecoration(
-                             border:Border.all(width:1,color: mainGreen),
-                             borderRadius: BorderRadius.circular(4),
-                           ),
-
-
-                              child: Padding(
-                                 padding: const EdgeInsets.only(top:5.0),
-                                 child:
-                                     Center(
-                                       child: Text(slots[index],overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
-                                       'Poppins',fontSize: 14,color: Color(0xff1D1D1B)),),
-                                     ),
-
-
+                         child: Stack(
+                           children:[ InkWell(
+                             onTap: ()=>setState(()=>forthSelectedIndex=index),
+                             child: Container(
+                               width:77,height:40,
+                               decoration :BoxDecoration(
+                                 border:Border.all(width:1,color:(forthSelectedIndex==index)?mainGreen: mainGrey),
+                                 borderRadius: BorderRadius.circular(4),
                                ),
 
 
-                         ),
+                                  child: Padding(
+                                     padding: const EdgeInsets.only(top:5.0),
+                                     child:
+                                         Center(
+                                           child: Text(slots[index],overflow: TextOverflow.ellipsis,maxLines:2,style: TextStyle(fontFamily:
+                                           'Poppins',fontSize: 14,color:(forthSelectedIndex==index)? null:Color(0xffB4BFC5),),),
+                                         ),
+
+
+                                   ),
+
+
+                             ),
+                           ),
+                             Padding(
+                               padding: const EdgeInsets.only(left:0,bottom: 0, ),
+                               child:  (forthSelectedIndex==index)?Container(
+                                 margin: const EdgeInsets.only(left:65,bottom: 10, ),
+                                 width: 18,height: 18,
+                                 decoration: BoxDecoration(shape: BoxShape.circle,color: mainGreen),
+                                 child:Icon(Icons.check,color: mainWhite,size: 16,),
+                               ):null,
+                             ),
+                        ] ),
                        ),
                  ),
                ),
@@ -955,7 +877,7 @@ List<String> duration=[
                                                     child: Row(
                                                       children: [
                                                         InkWell(
-                                                          onTap: (){AppCubit.get(context).thirdchangeStyle();},
+                                                          onTap: (){AppCubit.get(context).thirdMinus();},
                                                           child: Container(
                                                               height: 25,width: 25,
                                                               child:Image.asset('assets/minus.png',height: 16,width: 16,)
@@ -1016,7 +938,7 @@ List<String> duration=[
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left:24,),
-                                                    child: Text('5.00 QAR',style: TextStyle(
+                                                    child: Text('${AppCubit.get(context).counter+AppCubit.get(context).secondcounter+AppCubit.get(context).thirdcounter}.00 QAR',style: TextStyle(
                                                       fontFamily: 'Poppins',fontSize: 19,color: mainGreen,
                                                     ),),
                                                   ),
